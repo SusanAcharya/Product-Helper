@@ -1,16 +1,16 @@
 window.__PH__ = {
-  "generatedAt": "2026-09-12T14:40:00.000Z",
+  "generatedAt": "2026-09-12T14:52:00.000Z",
   "product": {
     "name": "Product-Helper",
     "slug": "product-helper",
-    "tagline": "Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.",
+    "tagline": "One command installs living PRD, kanban, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.",
     "users": [
       "Software teams and coding agents working in a repository",
       "Human product managers who own priorities and accept work"
     ],
     "problem": "Teams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.",
     "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "columns": [
     {
@@ -82,7 +82,7 @@ window.__PH__ = {
     {
       "id": "ph-004",
       "title": "Multi-agent skills",
-      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.1.",
+      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.2.",
       "status": "review",
       "labels": [
         "distribution",
@@ -110,7 +110,7 @@ window.__PH__ = {
     {
       "id": "ph-006",
       "title": "Agent-first usage story",
-      "description": "README, skill, and snippets say the agent updates the PRD and board. Humans do not run sync after every change.",
+      "description": "README leads with `npx product-helper init`. That one command copies skills; agents then update the PRD and board. Humans do not run sync after every change.",
       "status": "review",
       "labels": [
         "now",
@@ -118,7 +118,7 @@ window.__PH__ = {
       ],
       "feature": "agent-first-loop",
       "createdAt": "2026-09-12T14:35:00.000Z",
-      "updatedAt": "2026-09-12T14:40:00.000Z",
+      "updatedAt": "2026-09-12T14:50:00.000Z",
       "source": "agent"
     }
   ],
@@ -135,7 +135,7 @@ window.__PH__ = {
       "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Human PM accepts Review cards for the 1.0.1 npm release."
+      "summary": "Human PM accepts Review cards for the 1.0.2 npm release."
     },
     {
       "id": "later",
@@ -190,6 +190,24 @@ window.__PH__ = {
       "from": "product-helper@1.0.0",
       "to": "product-helper@1.0.1",
       "summary": "Published product-helper@1.0.1 so npm matches the agent-first docs."
+    },
+    {
+      "id": "chg-readme-npx",
+      "at": "2026-09-12T14:50:00.000Z",
+      "kind": "replaced",
+      "section": "readme",
+      "from": "Concept-first README with install buried below",
+      "to": "README opens with npx product-helper init",
+      "summary": "Replaced the README lead so one npx command is the product."
+    },
+    {
+      "id": "chg-npm-102",
+      "at": "2026-09-12T14:52:00.000Z",
+      "kind": "added",
+      "section": "distribution",
+      "from": "product-helper@1.0.1",
+      "to": "product-helper@1.0.2",
+      "summary": "Published product-helper@1.0.2 so npm leads with npx product-helper init."
     }
   ],
   "decisions": [
@@ -201,9 +219,9 @@ window.__PH__ = {
     }
   ],
   "docs": {
-    "product": "# Product-Helper\n\n> Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.\n\n**Status:** living PRD · **Generated:** 2026-09-12T14:40:00.000Z · **Product version:** 1.0.1\n\n<!-- USER-VISION:START -->\n## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.\n<!-- USER-VISION:END -->\n\n## Users\n\n- Software teams and coding agents working in a repository\n- Human product managers who own priorities and accept work\n\n## Problem\n\nTeams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.\n\n## Core features\n\n- **Living PRD** — PRODUCT.md with users, problem, features, and change marks. Agents update it after major work. _(board: review)_\n- **Kanban PM board** — Offline HTML board with card drawer, now/next/later, and a highlighted product-doc viewer. _(board: review)_\n- **Guardrails** — Built-in safety rules plus a Custom section agents re-read before acting. _(board: review)_\n- **Multi-agent skills** — Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.1. _(board: review)_\n- **CLI** — init installs the workspace. serve opens the board. sync and status are optional fallbacks, not the daily loop. _(board: review)_\n- **Agent-first usage story** — README, skill, and snippets say the agent updates the PRD and board. Humans do not run sync after every change. _(board: review)_\n\n## Deliverables\n\n- Open work: **6** cards\n- Completed (confirmed): **0** cards\n- Human PM owns acceptance. Agents must not invent completed work.\n\n## Current status\n\n- **Backlog:** 0\n- **Ready:** 0\n- **In Progress:** 0\n- **Review:** 6\n- **Done:** 0\n\n## Now / next / later\n\n- **now — Agent-first loop:** Install once; agents keep the PRD and board current. CLI is a fallback.\n- **next — Confirm the shipped slice:** Human PM accepts Review cards for the 1.0.1 npm release.\n- **later — Harden distribution:** Cursor marketplace and other optional distribution, not new daily-loop commands.\n\n## Change tracking\n\nMarks render on GitHub and in the Product-Helper board:\n\n- <ins class=\"ph-added\">added</ins>\n- <del class=\"ph-removed\">removed</del>\n- <mark class=\"ph-replaced\">replaced</mark>\n\n- 2026-09-12 · <ins class=\"ph-added\">Published product-helper@1.0.1 so npm matches the agent-first docs.</ins>\n- 2026-09-12 · <ins class=\"ph-added\">Published product-helper@1.0.0 to the npm registry.</ins>\n- 2026-09-12 · <mark class=\"ph-replaced\">Replaced CLI-first docs with an agent-first loop.</mark>\n- 2026-09-12 · <mark class=\"ph-replaced\">Replaced the truncated README intro with the real product problem.</mark>\n- 2026-09-12 · <ins class=\"ph-added\">Bootstrapped Product-Helper workspace from repository inspection.</ins>\n\n---\n\n_Do not delete the `USER-VISION` markers. Agents update the rest of this file after major work._\n",
+    "product": "# Product-Helper\n\n> One command installs living PRD, kanban, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.\n\n**Status:** living PRD · **Generated:** 2026-09-12T14:52:00.000Z · **Product version:** 1.0.2\n\n<!-- USER-VISION:START -->\n## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.\n<!-- USER-VISION:END -->\n\n## Users\n\n- Software teams and coding agents working in a repository\n- Human product managers who own priorities and accept work\n\n## Problem\n\nTeams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.\n\n## Core features\n\n- **Living PRD** — PRODUCT.md with users, problem, features, and change marks. Agents update it after major work. _(board: review)_\n- **Kanban PM board** — Offline HTML board with card drawer, now/next/later, and a highlighted product-doc viewer. _(board: review)_\n- **Guardrails** — Built-in safety rules plus a Custom section agents re-read before acting. _(board: review)_\n- **Multi-agent skills** — Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.2. _(board: review)_\n- **CLI** — init installs the workspace. serve opens the board. sync and status are optional fallbacks, not the daily loop. _(board: review)_\n- **Agent-first usage story** — README leads with `npx product-helper init`. That one command copies skills; agents then update the PRD and board. Humans do not run sync after every change. _(board: review)_\n\n## Deliverables\n\n- Open work: **6** cards\n- Completed (confirmed): **0** cards\n- Human PM owns acceptance. Agents must not invent completed work.\n\n## Current status\n\n- **Backlog:** 0\n- **Ready:** 0\n- **In Progress:** 0\n- **Review:** 6\n- **Done:** 0\n\n## Now / next / later\n\n- **now — Agent-first loop:** Install once; agents keep the PRD and board current. CLI is a fallback.\n- **next — Confirm the shipped slice:** Human PM accepts Review cards for the 1.0.2 npm release.\n- **later — Harden distribution:** Cursor marketplace and other optional distribution, not new daily-loop commands.\n\n## Change tracking\n\nMarks render on GitHub and in the Product-Helper board:\n\n- <ins class=\"ph-added\">added</ins>\n- <del class=\"ph-removed\">removed</del>\n- <mark class=\"ph-replaced\">replaced</mark>\n\n- 2026-09-12 · <ins class=\"ph-added\">Published product-helper@1.0.2 so npm leads with npx product-helper init.</ins>\n- 2026-09-12 · <mark class=\"ph-replaced\">Replaced the README lead so one npx command is the product.</mark>\n- 2026-09-12 · <ins class=\"ph-added\">Published product-helper@1.0.1 so npm matches the agent-first docs.</ins>\n- 2026-09-12 · <ins class=\"ph-added\">Published product-helper@1.0.0 to the npm registry.</ins>\n- 2026-09-12 · <mark class=\"ph-replaced\">Replaced CLI-first docs with an agent-first loop.</mark>\n- 2026-09-12 · <mark class=\"ph-replaced\">Replaced the truncated README intro with the real product problem.</mark>\n- 2026-09-12 · <ins class=\"ph-added\">Bootstrapped Product-Helper workspace from repository inspection.</ins>\n\n---\n\n_Do not delete the `USER-VISION` markers. Agents update the rest of this file after major work._\n",
     "guardrails": "# Guardrails\n\nAgents must always re-read this file, including **Custom guardrails**, before acting. Honor built-in and custom rules together. Custom rules may tighten policy. They must not weaken a built-in safety rule.\n\nGenerated by Product-Helper. Edit only the Custom section unless you are updating the product itself.\n\n## Built-in guardrails\n\n### Secrets and credentials\n\n- Do not read, print, copy, or modify `.env`, `.env.*`, or files that look like secrets (`credentials.json`, `*.pem`, `*.p12`, `id_rsa`, `id_ed25519`, cloud key JSON).\n- Do not commit secrets, tokens, private keys, connection strings, or session cookies.\n- Do not write secrets into PRODUCT.md, the board, logs, screenshots, or chat.\n- If a secret appears in a diff, stop and tell the human. Do not repeat the value.\n\n### Git safety\n\n- Do not change git config.\n- Do not run destructive git (`push --force`, `reset --hard`, `checkout .` that discards work, `clean -fdx`) unless the user explicitly asked in this conversation.\n- Do not skip hooks (`--no-verify`) unless the user explicitly asked.\n- Do not amend commits you did not create in this session, and never amend after push unless the user explicitly asked.\n- Do not commit unless the user asked.\n\n### Source and data exfiltration\n\n- Do not upload private source, customer data, or internal docs to third-party services.\n- Do not paste private code into public gists, issues, or tickets unless the user asked.\n- Treat customer content, medical data, financial records, and auth tokens as restricted.\n\n### Production and paid systems\n\n- Do not call production APIs, paid LLM endpoints, SMS, email blast, or ad platforms without explicit permission.\n- Do not deploy, migrate, drop, or truncate production data without an explicit ask.\n- Prefer local or staging targets. Ask before irreversible schema or data changes.\n\n### Security posture\n\n- Do not weaken authentication, authorization, CSRF, CORS, CSP, or row-level security.\n- Do not disable TLS verification, widen CORS to `*`, or add `eval` / unsafe HTML sinks without a documented reason and PM approval.\n- Prefer least privilege. Do not grant admin by default.\n\n### Privacy and people\n\n- Do not scrape, store, or leak PII you do not need.\n- Do not generate sexual or romantic content involving minors.\n- Do not help with weapons, exploit development, unauthorized access, or fraud.\n- Do not give actionable self-harm methods. If someone is in crisis, encourage real help.\n\n### Quality of change\n\n- Prefer small, focused diffs over repo-wide rewrites.\n- Do not delete unrelated comments, formatting, or files.\n- Do not leave placeholder TODOs in shipped skills or user-facing docs you generate.\n- Match existing style. Do not add unused dependencies.\n- Ask before license or copyright changes. Respect third-party licenses.\n\n### Product-Helper workspace\n\n- Keep `.product-helper/product.json` truthful.\n- Never invent completed work. The human is the PM.\n- After major work, update the board and PRODUCT.md with add/remove/replace marks.\n- Do not overwrite Custom guardrails or the USER-VISION block.\n\n## Custom guardrails\n\nTeam-specific rules go between the markers. Agents always merge these with the defaults above.\n\n<!-- CUSTOM-GUARDRAILS:START -->\n\n_Add project-specific rules here. Examples: “never touch `infra/prod`”, “ask before changing billing”, “keep the public API backwards compatible”._\n\n<!-- CUSTOM-GUARDRAILS:END -->\n",
     "decisions": "# Decision log\n\nProduct-Helper records PM tradeoffs here. The human is the PM.\n\n<!-- USER-DECISIONS:START -->\n### Agent owns the daily loop\n\nAccepted 2026-09-12. After `init`, Cursor / Claude / Codex / ChatGPT update the PRD and board themselves. CLI `sync` and `status` stay as optional fallbacks. Humans do not run them after every change.\n<!-- USER-DECISIONS:END -->\n",
-    "changelog": "# Changelog\n\nGenerated: 2026-09-12T14:40:00.000Z\n\n- 2026-09-12T14:40:00.000Z · **added** · distribution: Published product-helper@1.0.1 so npm matches the agent-first docs.\n- 2026-09-12T14:35:00.000Z · **added** · distribution: Published product-helper@1.0.0 to the npm registry.\n- 2026-09-12T14:35:00.000Z · **replaced** · usage: Replaced CLI-first docs with an agent-first loop.\n- 2026-09-12T14:35:00.000Z · **replaced** · problem: Replaced the truncated README intro with the real product problem.\n- 2026-09-12T13:51:47.786Z · **added** · workspace: Bootstrapped Product-Helper workspace from repository inspection.\n"
+    "changelog": "# Changelog\n\nGenerated: 2026-09-12T14:52:00.000Z\n\n- 2026-09-12T14:52:00.000Z · **added** · distribution: Published product-helper@1.0.2 so npm leads with npx product-helper init.\n- 2026-09-12T14:50:00.000Z · **replaced** · readme: Replaced the README lead so one npx command is the product.\n- 2026-09-12T14:40:00.000Z · **added** · distribution: Published product-helper@1.0.1 so npm matches the agent-first docs.\n- 2026-09-12T14:35:00.000Z · **added** · distribution: Published product-helper@1.0.0 to the npm registry.\n- 2026-09-12T14:35:00.000Z · **replaced** · usage: Replaced CLI-first docs with an agent-first loop.\n- 2026-09-12T14:35:00.000Z · **replaced** · problem: Replaced the truncated README intro with the real product problem.\n- 2026-09-12T13:51:47.786Z · **added** · workspace: Bootstrapped Product-Helper workspace from repository inspection.\n"
   }
 };

@@ -4,7 +4,7 @@ import { serveCommand } from "./commands/serve.js";
 import { statusCommand } from "./commands/status.js";
 import { guardrailsCommand } from "./commands/guardrails.js";
 
-const VERSION = "1.0.1";
+const VERSION = "1.0.2";
 
 const HELP = `Product-Helper ${VERSION}
 

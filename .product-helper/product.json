@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T14:40:00.000Z",
+  "generatedAt": "2026-09-12T14:52:00.000Z",
   "generatedBy": "product-helper",
   "product": {
     "name": "Product-Helper",
     "slug": "product-helper",
-    "tagline": "Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.",
+    "tagline": "One command installs living PRD, kanban, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.",
     "users": [
       "Software teams and coding agents working in a repository",
       "Human product managers who own priorities and accept work"
     ],
     "problem": "Teams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.",
     "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "milestones": [
     {
@@ -27,7 +27,7 @@
       "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Human PM accepts Review cards for the 1.0.1 npm release."
+      "summary": "Human PM accepts Review cards for the 1.0.2 npm release."
     },
     {
       "id": "later",
@@ -107,7 +107,7 @@
     {
       "id": "ph-004",
       "title": "Multi-agent skills",
-      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.1.",
+      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.2.",
       "status": "review",
       "labels": [
         "distribution",
@@ -135,7 +135,7 @@
     {
       "id": "ph-006",
       "title": "Agent-first usage story",
-      "description": "README, skill, and snippets say the agent updates the PRD and board. Humans do not run sync after every change.",
+      "description": "README leads with `npx product-helper init`. That one command copies skills; agents then update the PRD and board. Humans do not run sync after every change.",
       "status": "review",
       "labels": [
         "now",
@@ -143,7 +143,7 @@
       ],
       "feature": "agent-first-loop",
       "createdAt": "2026-09-12T14:35:00.000Z",
-      "updatedAt": "2026-09-12T14:40:00.000Z",
+      "updatedAt": "2026-09-12T14:50:00.000Z",
       "source": "agent"
     }
   ],
@@ -192,6 +192,24 @@
       "from": "product-helper@1.0.0",
       "to": "product-helper@1.0.1",
       "summary": "Published product-helper@1.0.1 so npm matches the agent-first docs."
+    },
+    {
+      "id": "chg-readme-npx",
+      "at": "2026-09-12T14:50:00.000Z",
+      "kind": "replaced",
+      "section": "readme",
+      "from": "Concept-first README with install buried below",
+      "to": "README opens with npx product-helper init",
+      "summary": "Replaced the README lead so one npx command is the product."
+    },
+    {
+      "id": "chg-npm-102",
+      "at": "2026-09-12T14:52:00.000Z",
+      "kind": "added",
+      "section": "distribution",
+      "from": "product-helper@1.0.1",
+      "to": "product-helper@1.0.2",
+      "summary": "Published product-helper@1.0.2 so npm leads with npx product-helper init."
     }
   ],
   "decisions": [

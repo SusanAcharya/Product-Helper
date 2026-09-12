@@ -75,7 +75,7 @@ function extractHeadings(markdown) {
     .slice(0, 24);
 }
 
-const SKIP_HEADINGS = /^(users?|problem|features?|vision|capabilities|install(?:ation)?|usage|getting started|license|contributing|changelog|example|examples|workspace|core features|deliverables|current status|when to use|role|always|open|working here|commands|options|faq|docs|documentation|table of contents|overview|about|cli)$/i;
+const SKIP_HEADINGS = /^(users?|problem|features?|vision|capabilities|install(?:ation)?|usage|getting started|license|contributing|changelog|example|examples|workspace|core features|deliverables|current status|when to use|role|always|open|working here|commands|options|faq|docs|documentation|table of contents|overview|about|cli(?: \(optional\))?|how it works|what you get|after init|files\b.*|other install.*)$/i;
 
 function inferFeatures(pkg, headings, sourceHints, top, identity = {}) {
   const found = [];
