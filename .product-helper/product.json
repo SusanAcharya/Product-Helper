@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T14:35:00.000Z",
+  "generatedAt": "2026-09-12T14:40:00.000Z",
   "generatedBy": "product-helper",
   "product": {
     "name": "Product-Helper",
@@ -12,7 +12,7 @@
     ],
     "problem": "Teams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.",
     "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "milestones": [
     {
@@ -27,7 +27,7 @@
       "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Human PM accepts Review cards for the 1.0.0 npm release."
+      "summary": "Human PM accepts Review cards for the 1.0.1 npm release."
     },
     {
       "id": "later",
@@ -107,7 +107,7 @@
     {
       "id": "ph-004",
       "title": "Multi-agent skills",
-      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.0.",
+      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.1.",
       "status": "review",
       "labels": [
         "distribution",
@@ -115,7 +115,7 @@
       ],
       "feature": "multi-agent-skills",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-12T14:40:00.000Z",
       "source": "agent"
     },
     {
@@ -143,7 +143,7 @@
       ],
       "feature": "agent-first-loop",
       "createdAt": "2026-09-12T14:35:00.000Z",
-      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-12T14:40:00.000Z",
       "source": "agent"
     }
   ],
@@ -183,6 +183,15 @@
       "from": "",
       "to": "product-helper@1.0.0 on npm",
       "summary": "Published product-helper@1.0.0 to the npm registry."
+    },
+    {
+      "id": "chg-npm-101",
+      "at": "2026-09-12T14:40:00.000Z",
+      "kind": "added",
+      "section": "distribution",
+      "from": "product-helper@1.0.0",
+      "to": "product-helper@1.0.1",
+      "summary": "Published product-helper@1.0.1 so npm matches the agent-first docs."
     }
   ],
   "decisions": [

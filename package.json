@@ -1,6 +1,6 @@
 {
   "name": "product-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.",
   "type": "module",
   "bin": {

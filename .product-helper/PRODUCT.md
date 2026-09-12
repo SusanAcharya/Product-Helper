@@ -2,7 +2,7 @@
 
 > Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.
 
-**Status:** living PRD · **Generated:** 2026-09-12T14:35:00.000Z · **Product version:** 1.0.0
+**Status:** living PRD · **Generated:** 2026-09-12T14:40:00.000Z · **Product version:** 1.0.1
 
 <!-- USER-VISION:START -->
 ## Vision
@@ -24,7 +24,7 @@ Teams and coding agents lose the plan: the PRD goes stale, the board lives elsew
 - **Living PRD** — PRODUCT.md with users, problem, features, and change marks. Agents update it after major work. _(board: review)_
 - **Kanban PM board** — Offline HTML board with card drawer, now/next/later, and a highlighted product-doc viewer. _(board: review)_
 - **Guardrails** — Built-in safety rules plus a Custom section agents re-read before acting. _(board: review)_
-- **Multi-agent skills** — Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.0. _(board: review)_
+- **Multi-agent skills** — Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.1. _(board: review)_
 - **CLI** — init installs the workspace. serve opens the board. sync and status are optional fallbacks, not the daily loop. _(board: review)_
 - **Agent-first usage story** — README, skill, and snippets say the agent updates the PRD and board. Humans do not run sync after every change. _(board: review)_
 
@@ -45,7 +45,7 @@ Teams and coding agents lose the plan: the PRD goes stale, the board lives elsew
 ## Now / next / later
 
 - **now — Agent-first loop:** Install once; agents keep the PRD and board current. CLI is a fallback.
-- **next — Confirm the shipped slice:** Human PM accepts Review cards for the 1.0.0 npm release.
+- **next — Confirm the shipped slice:** Human PM accepts Review cards for the 1.0.1 npm release.
 - **later — Harden distribution:** Cursor marketplace and other optional distribution, not new daily-loop commands.
 
 ## Change tracking
@@ -56,6 +56,7 @@ Marks render on GitHub and in the Product-Helper board:
 - <del class="ph-removed">removed</del>
 - <mark class="ph-replaced">replaced</mark>
 
+- 2026-09-12 · <ins class="ph-added">Published product-helper@1.0.1 so npm matches the agent-first docs.</ins>
 - 2026-09-12 · <ins class="ph-added">Published product-helper@1.0.0 to the npm registry.</ins>
 - 2026-09-12 · <mark class="ph-replaced">Replaced CLI-first docs with an agent-first loop.</mark>
 - 2026-09-12 · <mark class="ph-replaced">Replaced the truncated README intro with the real product problem.</mark>

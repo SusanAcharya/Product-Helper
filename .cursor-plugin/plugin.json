@@ -1,6 +1,6 @@
 {
   "name": "product-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Living PRD, kanban PM board, and project guardrails. Agents inspect the repo, keep PRODUCT.md and the board in sync, and honor GUARDRAILS.md after every major change.",
   "author": {
     "name": "Susan Acharya"
