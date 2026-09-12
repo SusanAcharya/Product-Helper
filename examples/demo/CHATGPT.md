@@ -31,7 +31,7 @@ Infer name, users, problem, features, and status from README and source layout. 
 
 ## After major work
 
-Update matching cards, PRD sections, and the board. Mark PRD diffs:
+Update matching cards, PRD sections, and the board yourself. Do not ask the human to run `sync` or `status`. Mark PRD diffs:
 
 - added: `++text++` or `<ins class="ph-added">`
 - removed: `~~text~~` or `<del class="ph-removed">`

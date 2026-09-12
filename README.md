@@ -1,14 +1,31 @@
 # Product-Helper
 
-A shippable product-and-project system for coding agents. Install it into any repo (or globally) so agents can:
+A living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor.
+
+Install once. Then Cursor, Claude, Codex, or ChatGPT keep the plan current after real work. You do not run `sync` or `status` after every change.
 
 1. Inspect the repository and generate a living **product document (PRD)**
 2. Keep a **kanban PM board** the human owns (open as local HTML)
-3. After every major change, **update the board and the PRD**
+3. After every major change, **the agent updates the board and the PRD**
 4. Mark PRD diffs **green (added)**, **yellow (replaced)**, and **red (removed)**
 5. Honor **GUARDRAILS.md** — built-in safety rules plus a Custom section you edit
 
 The human is the PM. Agents propose cards and update status from real work. They do not invent completed work.
+
+## How it works
+
+1. Run `npx product-helper init` once in a repo.
+2. Work with your coding agent as usual.
+3. After a feature, fix, or scope change, the agent updates `.product-helper/` (PRD, board, guardrails).
+
+You accept Done, edit Custom guardrails, and own the vision.
+
+Open the board when you want to look at it:
+
+```bash
+npx product-helper serve          # http://127.0.0.1:4173/
+# or open .product-helper/board/index.html
+```
 
 ## Capabilities
 
@@ -24,8 +41,8 @@ Built-in safety rules plus a Custom section agents must re-read before every maj
 ### Multi-agent skills
 The same workflow ships as Cursor, Claude Code, and ChatGPT/Codex skills.
 
-### CLI sync
-`init`, `sync`, `serve`, `status`, and `guardrails` keep the workspace idempotent and reviewable.
+### CLI (optional)
+`init` installs the workspace. `serve` opens the board. `sync`, `status`, and `guardrails` are fallbacks when no agent is available — not the daily loop.
 
 ## Install
 
@@ -42,22 +59,14 @@ This copies:
 | `.cursor/skills/product-helper/` | Cursor Agent Skill (`SKILL.md`) |
 | `.claude/skills/product-helper/` | Claude Code skill |
 | `.agents/skills/product-helper/` | ChatGPT / Codex skill |
-| `.cursor/hooks.json` + `.cursor/hooks/` | Cursor hook: remind/sync after major work |
+| `.cursor/hooks.json` + `.cursor/hooks/` | Cursor hook: remind the agent after major work |
 | `.cursor/rules/product-helper.mdc` | Always-on reminder rule |
 | `.product-helper/` | PRD, guardrails, board, `product.json` |
 | `AGENTS.md` | Snippet so agents load the skill |
 | `CLAUDE.md` | Claude Code pointer |
 | `CHATGPT.md` | Custom GPT / Codex instructions |
 
-Then:
-
-```bash
-npx product-helper serve          # http://127.0.0.1:4173/
-npx product-helper status
-npx product-helper sync
-npx product-helper sync --from-git
-npx product-helper guardrails --validate
-```
+`init` is idempotent. It merges new inferred cards, refreshes generated sections, and **does not overwrite** Custom guardrails or the `USER-VISION` block.
 
 Local or global install:
 
@@ -66,8 +75,6 @@ npm install -D product-helper
 npm install -g product-helper
 product-helper init
 ```
-
-`init` is idempotent. It merges new inferred cards, refreshes generated sections, and **does not overwrite** Custom guardrails or the `USER-VISION` block.
 
 ### B. Cursor plugin pack
 
@@ -107,6 +114,8 @@ cp -R skills/product-helper ~/.claude/skills/product-helper
 - **Always-on project notes:** `AGENTS.md` (Codex reads this at session start).
 
 ## CLI
+
+Optional. Use `init` once, `serve` to view the board. Everything else is a fallback.
 
 ```
 product-helper init [--force] [--no-hooks] [--no-agents-md] [--dir <path>]

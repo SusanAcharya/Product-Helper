@@ -7,6 +7,8 @@ description: Inspects a repository, generates a living PRD and kanban PM board, 
 
 The human is the PM. You propose cards, update status from real work, and never invent completed work.
 
+You keep `.product-helper/` current yourself. Do not ask the human to run `sync` or `status` after every change. `npx product-helper init` is first install only. CLI `sync` / `status` are optional fallbacks when no agent is available.
+
 Workspace (target repo): `.product-helper/`
 
 | File | Purpose |
@@ -19,7 +21,7 @@ Workspace (target repo): `.product-helper/`
 | `board/board.json` | Board projection |
 | `board/index.html` | Offline kanban + doc viewer |
 
-Prefer `npx product-helper init` / `sync` when the CLI is available. If it is not, create and update the same files yourself.
+If the CLI is not available, create and update these files yourself.
 
 ## Always before acting
 
@@ -31,7 +33,7 @@ Prefer `npx product-helper init` / `sync` when the CLI is available. If it is no
 ## Bootstrap (first use)
 
 1. Scan the repo: README, package manifests, top-level layout, key source names. Skip secrets, `node_modules`, and build output.
-2. Infer product name, users, problem, features, deliverables, and current status. Label inferences as inferred until the PM confirms.
+2. Infer product name, users, problem, features, and current status. Label inferences as inferred until the PM confirms.
 3. Create `.product-helper/` if missing. Do not overwrite Custom guardrails or the `<!-- USER-VISION -->` block.
 4. Seed kanban columns: Backlog, Ready, In Progress, Review, Done.
 5. Seed cards from inferred work. New work starts in Backlog or Ready — never Done.
@@ -42,6 +44,8 @@ If `npx product-helper` works, run `init` instead of hand-writing templates.
 ## After every major change
 
 A major change is a new feature, a refinement, a completed task, or removed/replaced scope.
+
+Update the workspace files yourself:
 
 1. Re-read guardrails (defaults + custom).
 2. Update `product.json` cards: add, move, close, or relabel. Set `updatedAt`.
@@ -55,7 +59,7 @@ A major change is a new feature, a refinement, a completed task, or removed/repl
 7. Refresh `board/board.json` and `board/data.js` so the HTML board matches reality.
 8. Report links: board, PRODUCT.md, GUARDRAILS.md.
 
-If the CLI is available, `npx product-helper sync` (optional `--from-git`) then apply any remaining precise PRD marks yourself.
+`npx product-helper sync` is optional (mechanical refresh or `--from-git` proposals). You still apply precise PRD marks and must not invent Done.
 
 ## Board and PM rules
 

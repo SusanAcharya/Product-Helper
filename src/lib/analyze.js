@@ -139,9 +139,16 @@ function inferUsers(readme, description) {
 
 function inferProblem(readme, description, name) {
   const paragraph = firstParagraph(readme);
-  if (paragraph && paragraph.length > 40) return paragraph;
-  if (description) return description;
+  if (isCompleteProblem(paragraph)) return paragraph;
+  if (description && description.length > 40) return description;
   return `${name} needs a living product document and a visible board so humans and agents share one plan.`;
+}
+
+function isCompleteProblem(paragraph) {
+  if (!paragraph || paragraph.length < 40) return false;
+  if (/[:：]$/.test(paragraph)) return false;
+  if (/so (agents|users|developers|you) can:?$/i.test(paragraph)) return false;
+  return true;
 }
 
 function firstParagraph(markdown) {

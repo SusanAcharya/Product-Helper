@@ -1,5 +1,7 @@
 # Product-Helper workflow
 
+The agent owns the loop. After `init`, update `.product-helper/` yourself when work lands. Do not send the human to `sync` or `status` as the daily path.
+
 ## File map
 
 ```
@@ -28,13 +30,13 @@ Skills installed by `product-helper init`:
 ## Bootstrap checklist
 
 - [ ] Inspect README + manifests + source layout (no secrets)
-- [ ] Create workspace if missing
+- [ ] Create workspace if missing (`npx product-helper init` when the CLI is available)
 - [ ] Preserve Custom guardrails and USER-VISION
 - [ ] Seed columns and inferred cards
 - [ ] Write product.json, markdown, board snapshot
 - [ ] Point the human at the board URL / file
 
-## Sync checklist (after major work)
+## After major work (agent)
 
 - [ ] Re-read GUARDRAILS.md (defaults + custom)
 - [ ] Update matching cards; do not fabricate Done
@@ -42,6 +44,8 @@ Skills installed by `product-helper init`:
 - [ ] Append CHANGELOG + optional DECISIONS
 - [ ] Regenerate board.json and data.js
 - [ ] Give the human the three links
+
+`npx product-helper sync` is an optional fallback (mechanical refresh or `--from-git` proposals).
 
 ## product.json card shape
 

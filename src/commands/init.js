@@ -22,5 +22,8 @@ export function initCommand(cwd, flags) {
   console.log("Open the board:");
   console.log("  npx product-helper serve");
   console.log("  or open .product-helper/board/index.html");
+  console.log("");
+  console.log("After init, your coding agent updates the PRD and board.");
+  console.log("You do not need to run sync after every change.");
   return 0;
 }

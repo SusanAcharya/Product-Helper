@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T13:51:47.786Z",
+  "generatedAt": "2026-09-12T14:35:00.000Z",
   "generatedBy": "product-helper",
   "product": {
     "name": "Product-Helper",
@@ -10,31 +10,31 @@
       "Software teams and coding agents working in a repository",
       "Human product managers who own priorities and accept work"
     ],
-    "problem": "A shippable product-and-project system for coding agents. Install it into any repo (or globally) so agents can:",
+    "problem": "Teams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.",
     "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.",
     "version": "1.0.0"
   },
   "milestones": [
     {
       "id": "now",
-      "title": "Make the product understandable",
+      "title": "Agent-first loop",
       "horizon": "now",
       "status": "active",
-      "summary": "Document Product-Helper, seed the board, and confirm the first shippable slice."
+      "summary": "Install once; agents keep the PRD and board current. CLI is a fallback."
     },
     {
       "id": "next",
-      "title": "Close the highest-value gaps",
+      "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Turn inferred features into confirmed deliverables and move Ready work through Review."
+      "summary": "Human PM accepts Review cards for the 1.0.0 npm release."
     },
     {
       "id": "later",
-      "title": "Harden and scale the system",
+      "title": "Harden distribution",
       "horizon": "later",
       "status": "later",
-      "summary": "Polish distribution, automation, and long-horizon product bets."
+      "summary": "Cursor marketplace and other optional distribution, not new daily-loop commands."
     }
   ],
   "columns": [
@@ -63,69 +63,88 @@
     {
       "id": "ph-001",
       "title": "Living PRD",
-      "description": "Documented in the project README as “Living PRD”.",
-      "status": "in-progress",
+      "description": "PRODUCT.md with users, problem, features, and change marks. Agents update it after major work.",
+      "status": "review",
       "labels": [
         "now",
-        "docs"
+        "docs",
+        "feature"
       ],
       "feature": "living-prd",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T13:51:47.786Z",
-      "source": "bootstrap"
+      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "source": "agent"
     },
     {
       "id": "ph-002",
       "title": "Kanban PM board",
-      "description": "Documented in the project README as “Kanban PM board”.",
-      "status": "in-progress",
+      "description": "Offline HTML board with card drawer, now/next/later, and a highlighted product-doc viewer.",
+      "status": "review",
       "labels": [
         "now",
-        "board"
+        "board",
+        "feature"
       ],
       "feature": "kanban-pm-board",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T13:51:47.786Z",
-      "source": "bootstrap"
+      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "source": "agent"
     },
     {
       "id": "ph-003",
       "title": "Guardrails",
-      "description": "Documented in the project README as “Guardrails”.",
-      "status": "ready",
+      "description": "Built-in safety rules plus a Custom section agents re-read before acting.",
+      "status": "review",
       "labels": [
-        "now"
+        "now",
+        "feature"
       ],
       "feature": "guardrails",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T13:51:47.786Z",
-      "source": "bootstrap"
+      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "source": "agent"
     },
     {
       "id": "ph-004",
       "title": "Multi-agent skills",
-      "description": "Documented in the project README as “Multi-agent skills”.",
+      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.0.",
       "status": "review",
       "labels": [
-        "distribution"
+        "distribution",
+        "feature"
       ],
       "feature": "multi-agent-skills",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T13:51:47.786Z",
-      "source": "bootstrap"
+      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "source": "agent"
     },
     {
       "id": "ph-005",
-      "title": "CLI sync",
-      "description": "Documented in the project README as “CLI sync”.",
-      "status": "ready",
+      "title": "CLI",
+      "description": "init installs the workspace. serve opens the board. sync and status are optional fallbacks, not the daily loop.",
+      "status": "review",
       "labels": [
-        "cli"
+        "cli",
+        "feature"
       ],
-      "feature": "cli-sync",
+      "feature": "cli",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T13:51:47.786Z",
-      "source": "bootstrap"
+      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "source": "agent"
+    },
+    {
+      "id": "ph-006",
+      "title": "Agent-first usage story",
+      "description": "README, skill, and snippets say the agent updates the PRD and board. Humans do not run sync after every change.",
+      "status": "review",
+      "labels": [
+        "now",
+        "docs"
+      ],
+      "feature": "agent-first-loop",
+      "createdAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "source": "agent"
     }
   ],
   "changes": [
@@ -137,9 +156,43 @@
       "from": "",
       "to": ".product-helper/",
       "summary": "Bootstrapped Product-Helper workspace from repository inspection."
+    },
+    {
+      "id": "chg-problem",
+      "at": "2026-09-12T14:35:00.000Z",
+      "kind": "replaced",
+      "section": "problem",
+      "from": "A shippable product-and-project system for coding agents. Install it into any repo (or globally) so agents can:",
+      "to": "Teams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules.",
+      "summary": "Replaced the truncated README intro with the real product problem."
+    },
+    {
+      "id": "chg-agent-first",
+      "at": "2026-09-12T14:35:00.000Z",
+      "kind": "replaced",
+      "section": "usage",
+      "from": "CLI sync and status as the daily path",
+      "to": "Agent updates the PRD and board; CLI is fallback",
+      "summary": "Replaced CLI-first docs with an agent-first loop."
+    },
+    {
+      "id": "chg-npm",
+      "at": "2026-09-12T14:35:00.000Z",
+      "kind": "added",
+      "section": "distribution",
+      "from": "",
+      "to": "product-helper@1.0.0 on npm",
+      "summary": "Published product-helper@1.0.0 to the npm registry."
     }
   ],
-  "decisions": [],
+  "decisions": [
+    {
+      "id": "dec-agent-first",
+      "title": "Agent owns the daily loop",
+      "body": "Accepted 2026-09-12. After `init`, Cursor / Claude / Codex / ChatGPT update the PRD and board themselves. CLI `sync` and `status` stay as optional fallbacks. Humans do not run them after every change.",
+      "at": "2026-09-12T14:35:00.000Z"
+    }
+  ],
   "gitInferences": [],
   "analysis": {
     "packageName": "product-helper",

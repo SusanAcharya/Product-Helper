@@ -15,9 +15,9 @@ Usage:
 
 Commands:
   init          Scaffold skills, templates, and the PM workspace
-  sync          Re-analyze the repo and update PRD + board
+  sync          Optional fallback — re-analyze the repo and refresh PRD + board
   serve         Local static server for the board
-  status        Print paths and links
+  status        Optional — print paths and links
   guardrails    Print or validate GUARDRAILS.md
 
 Options:

@@ -6,6 +6,6 @@ alwaysApply: true
 This repo uses Product-Helper.
 
 - Re-read `.product-helper/GUARDRAILS.md` (defaults + Custom) before acting.
-- After major features, refinements, completed tasks, or scope changes, update `.product-helper/product.json`, `PRODUCT.md` with add/remove/replace marks, and the kanban board.
+- After major features, refinements, completed tasks, or scope changes, update `.product-helper/product.json`, `PRODUCT.md` with add/remove/replace marks, and the kanban board. Do not ask the human to run `sync` or `status`.
 - The human is the PM. Never invent completed work.
 - Skill: `.cursor/skills/product-helper/SKILL.md`

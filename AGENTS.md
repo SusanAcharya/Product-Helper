@@ -25,6 +25,6 @@ This repository uses Product-Helper for the living PRD, PM board, and guardrails
 
 - Before substantial work, read `.product-helper/GUARDRAILS.md` (built-in + Custom) if present, otherwise `templates/workspace/GUARDRAILS.md`.
 - Follow `skills/product-helper/SKILL.md`.
-- After a major feature, refinement, completed task, or scope change, keep examples and templates aligned.
+- After a major feature, refinement, completed task, or scope change, update `.product-helper/` yourself and keep examples and templates aligned. Do not ask the human to run `sync` or `status`.
 - The human is the PM. Do not invent completed work.
 <!-- product-helper:end -->
