@@ -1,0 +1,57 @@
+{
+  "name": "product-helper",
+  "version": "1.0.0",
+  "description": "Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.",
+  "type": "module",
+  "bin": {
+    "product-helper": "./bin/product-helper.js"
+  },
+  "main": "./src/cli.js",
+  "exports": {
+    ".": "./src/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "templates",
+    "hooks",
+    "rules",
+    "commands",
+    "assets",
+    "plugin.json",
+    ".cursor-plugin",
+    "CHATGPT.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node bin/product-helper.js",
+    "test": "node --test test/*.test.js",
+    "smoke": "node bin/product-helper.js --help && node bin/product-helper.js --version"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "product-management",
+    "prd",
+    "kanban",
+    "cursor",
+    "claude",
+    "chatgpt",
+    "codex",
+    "agent-skills",
+    "guardrails"
+  ],
+  "author": "Susan Acharya",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SusanAcharya/Product-Helper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SusanAcharya/Product-Helper/issues"
+  },
+  "homepage": "https://github.com/SusanAcharya/Product-Helper#readme"
+}

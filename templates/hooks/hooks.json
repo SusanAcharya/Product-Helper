@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": ".cursor/hooks/product-helper-stop.js --session-start"
+      }
+    ],
+    "stop": [
+      {
+        "type": "prompt",
+        "prompt": "If this turn completed a major feature, refinement, task, or scope change, follow the product-helper skill: re-read .product-helper/GUARDRAILS.md (defaults + Custom), then update product.json, PRODUCT.md (green added / yellow replaced / red removed), and the board so they match reality. The human is the PM — do not invent completed work. If Product-Helper is not initialized and this is a product repo, propose `npx product-helper init`. If docs already reflect the work, do nothing.",
+        "loop_limit": 1
+      }
+    ]
+  }
+}

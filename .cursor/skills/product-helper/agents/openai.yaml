@@ -1,0 +1,10 @@
+interface:
+  display_name: "Product-Helper"
+  short_description: "Living PRD, kanban board, and guardrails"
+  icon_small: "../assets/logo.svg"
+  icon_large: "../assets/logo.svg"
+  brand_color: "#0f766e"
+  default_prompt: "Inspect this repo with Product-Helper. Create or update the living PRD, PM board, and guardrails. After major work, sync the board and mark PRD changes green/yellow/red."
+
+policy:
+  allow_implicit_invocation: true

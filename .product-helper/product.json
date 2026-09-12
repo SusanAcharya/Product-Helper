@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-12T13:51:47.786Z",
+  "generatedBy": "product-helper",
+  "product": {
+    "name": "Product-Helper",
+    "slug": "product-helper",
+    "tagline": "Living PRD, kanban PM board, and guardrails for coding agents. Install as an npm CLI, Cursor plugin, or copy-into-repo skills for Cursor, Claude Code, and ChatGPT/Codex.",
+    "users": [
+      "Software teams and coding agents working in a repository",
+      "Human product managers who own priorities and accept work"
+    ],
+    "problem": "A shippable product-and-project system for coding agents. Install it into any repo (or globally) so agents can:",
+    "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.",
+    "version": "1.0.0"
+  },
+  "milestones": [
+    {
+      "id": "now",
+      "title": "Make the product understandable",
+      "horizon": "now",
+      "status": "active",
+      "summary": "Document Product-Helper, seed the board, and confirm the first shippable slice."
+    },
+    {
+      "id": "next",
+      "title": "Close the highest-value gaps",
+      "horizon": "next",
+      "status": "planned",
+      "summary": "Turn inferred features into confirmed deliverables and move Ready work through Review."
+    },
+    {
+      "id": "later",
+      "title": "Harden and scale the system",
+      "horizon": "later",
+      "status": "later",
+      "summary": "Polish distribution, automation, and long-horizon product bets."
+    }
+  ],
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "Backlog"
+    },
+    {
+      "id": "ready",
+      "title": "Ready"
+    },
+    {
+      "id": "in-progress",
+      "title": "In Progress"
+    },
+    {
+      "id": "review",
+      "title": "Review"
+    },
+    {
+      "id": "done",
+      "title": "Done"
+    }
+  ],
+  "cards": [
+    {
+      "id": "ph-001",
+      "title": "Living PRD",
+      "description": "Documented in the project README as “Living PRD”.",
+      "status": "in-progress",
+      "labels": [
+        "now",
+        "docs"
+      ],
+      "feature": "living-prd",
+      "createdAt": "2026-09-12T13:51:47.786Z",
+      "updatedAt": "2026-09-12T13:51:47.786Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "ph-002",
+      "title": "Kanban PM board",
+      "description": "Documented in the project README as “Kanban PM board”.",
+      "status": "in-progress",
+      "labels": [
+        "now",
+        "board"
+      ],
+      "feature": "kanban-pm-board",
+      "createdAt": "2026-09-12T13:51:47.786Z",
+      "updatedAt": "2026-09-12T13:51:47.786Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "ph-003",
+      "title": "Guardrails",
+      "description": "Documented in the project README as “Guardrails”.",
+      "status": "ready",
+      "labels": [
+        "now"
+      ],
+      "feature": "guardrails",
+      "createdAt": "2026-09-12T13:51:47.786Z",
+      "updatedAt": "2026-09-12T13:51:47.786Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "ph-004",
+      "title": "Multi-agent skills",
+      "description": "Documented in the project README as “Multi-agent skills”.",
+      "status": "review",
+      "labels": [
+        "distribution"
+      ],
+      "feature": "multi-agent-skills",
+      "createdAt": "2026-09-12T13:51:47.786Z",
+      "updatedAt": "2026-09-12T13:51:47.786Z",
+      "source": "bootstrap"
+    },
+    {
+      "id": "ph-005",
+      "title": "CLI sync",
+      "description": "Documented in the project README as “CLI sync”.",
+      "status": "ready",
+      "labels": [
+        "cli"
+      ],
+      "feature": "cli-sync",
+      "createdAt": "2026-09-12T13:51:47.786Z",
+      "updatedAt": "2026-09-12T13:51:47.786Z",
+      "source": "bootstrap"
+    }
+  ],
+  "changes": [
+    {
+      "id": "chg-bootstrap",
+      "at": "2026-09-12T13:51:47.786Z",
+      "kind": "added",
+      "section": "workspace",
+      "from": "",
+      "to": ".product-helper/",
+      "summary": "Bootstrapped Product-Helper workspace from repository inspection."
+    }
+  ],
+  "decisions": [],
+  "gitInferences": [],
+  "analysis": {
+    "packageName": "product-helper",
+    "scripts": [
+      "start",
+      "test",
+      "smoke"
+    ],
+    "docsPresent": [
+      "README.md",
+      "package.json"
+    ],
+    "structure": [
+      "AGENTS.md",
+      "CHATGPT.md",
+      "CLAUDE.md",
+      "LICENSE",
+      "README.md",
+      "assets",
+      "bin",
+      "commands",
+      "examples",
+      "hooks",
+      "package.json",
+      "plugin.json",
+      "rules",
+      "skills",
+      "src",
+      "templates",
+      "test"
+    ]
+  }
+}
