@@ -58,7 +58,7 @@ export function applyGitInferences(model, inferences) {
       title: item.title,
       description: `Inferred from commit ${item.hash}: ${item.subject}. Confirm before treating as complete.`,
       status: "review",
-      labels: ["git-inferred", item.kind],
+      labels: ["feature", "git-inferred", item.kind],
       feature: item.hash,
       createdAt: generatedAt,
       updatedAt: generatedAt,
@@ -70,12 +70,10 @@ export function applyGitInferences(model, inferences) {
 
 function classify(subject) {
   const text = subject.toLowerCase();
-  if (/\b(wip|tmp|typo|format|lint)\b/.test(text)) return null;
+  if (/\b(wip|tmp|typo|format|lint|bug|hotfix|patch|nit|chore)\b/.test(text)) return null;
   if (/^merge\b/.test(text)) return null;
+  if (/^(fix|bug|hotfix|docs|doc|refactor|chore|build|ci)\b/.test(text)) return null;
   if (/^(feat|feature|add|implement)\b/.test(text)) return "feature";
-  if (/^(fix|bug|hotfix)\b/.test(text)) return "fix";
-  if (/^(docs|doc)\b/.test(text)) return "docs";
-  if (/^(refactor|chore|build|ci)\b/.test(text)) return "chore";
   if (/^(remove|drop|delete|deprecate)\b/.test(text)) return "removed";
   return null;
 }

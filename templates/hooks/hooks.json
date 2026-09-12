@@ -9,7 +9,7 @@
     "stop": [
       {
         "type": "prompt",
-        "prompt": "If this turn completed a major feature, refinement, task, or scope change, follow the product-helper skill: re-read .product-helper/GUARDRAILS.md (defaults + Custom), then update product.json, PRODUCT.md (green added / yellow replaced / red removed), and the board so they match reality. The human is the PM — do not invent completed work. If Product-Helper is not initialized and this is a product repo, propose `npx product-helper init`. If docs already reflect the work, do nothing.",
+        "prompt": "If this turn finished a feature (not a small bug fix), follow the product-helper skill: re-read .product-helper/GUARDRAILS.md, then update product.json, PRODUCT.md, TaskTrack, and TIMELINE.md so they match reality. Feature cards only. The human is the PM — do not invent completed work. If Product-Helper is not initialized, propose `npx product-helper init`. If docs already match, do nothing.",
         "loop_limit": 1
       }
     ]

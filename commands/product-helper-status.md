@@ -1,12 +1,13 @@
 ---
 name: product-helper-status
-description: Show Product-Helper board, PRD, and guardrails paths and links.
+description: Show TaskTrack, product doc, timeline, and rules paths.
 ---
 
 # Product-Helper status
 
-Optional. Prefer reading `.product-helper/` yourself. If you want a one-line path dump, run `npx product-helper status` and tell the human how to open:
+Optional. Prefer reading `.product-helper/` yourself.
 
-- Board: `.product-helper/board/index.html` or `npx product-helper serve`
-- PRD: `.product-helper/PRODUCT.md`
-- Guardrails: `.product-helper/GUARDRAILS.md`
+- TaskTrack: `.product-helper/board/index.html` or `npx product-helper serve`
+- Product: `.product-helper/PRODUCT.md`
+- Timeline: `.product-helper/TIMELINE.md`
+- Rules: `.product-helper/GUARDRAILS.md`

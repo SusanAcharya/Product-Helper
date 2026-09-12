@@ -1,6 +1,6 @@
 # AGENTS
 
-This repository is **Product-Helper**: an npm CLI, Cursor plugin, and copy-into-repo skill pack that gives any project a living PRD, kanban board, and guardrails.
+This repository is **Product-Helper**: an npm CLI, Cursor plugin, and copy-into-repo skill pack that gives any project a living PRD, TaskTrack, and guardrails.
 
 ## Working here
 
@@ -21,10 +21,11 @@ node --test test/*.test.js
 <!-- product-helper:start -->
 ## Product-Helper
 
-This repository uses Product-Helper for the living PRD, PM board, and guardrails.
+This repository uses Product-Helper.
 
-- Before substantial work, read `.product-helper/GUARDRAILS.md` (built-in + Custom) if present, otherwise `templates/workspace/GUARDRAILS.md`.
+- Before substantial work, read `.product-helper/GUARDRAILS.md` if present, otherwise `templates/workspace/GUARDRAILS.md`.
 - Follow `skills/product-helper/SKILL.md`.
-- After a major feature, refinement, completed task, or scope change, update `.product-helper/` yourself and keep examples and templates aligned. Do not ask the human to run `sync` or `status`.
+- After a feature, update TaskTrack, PRODUCT.md, and TIMELINE.md yourself. Keep examples and templates aligned. Do not ask the human to run `sync`.
+- In this repo, `.product-helper/` is the product’s own workspace and stays in git. In consumer repos it is gitignored.
 - The human is the PM. Do not invent completed work.
 <!-- product-helper:end -->

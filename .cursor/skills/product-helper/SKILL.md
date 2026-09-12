@@ -1,77 +1,56 @@
 ---
 name: product-helper
-description: Inspects a repository, generates a living PRD and kanban PM board, then keeps PRODUCT.md, GUARDRAILS.md, and the board in sync after major work. Use when bootstrapping product docs, opening the PM board, updating the PRD, tracking features or deliverables, after completing a feature or task, when scope is added removed or replaced, or when the user mentions product-helper, PRODUCT.md, kanban, guardrails, or the project board.
+description: Inspects a repository, writes a living PRD, TaskTrack, and guardrails, then keeps them current after major feature work. Use when bootstrapping product docs, opening TaskTrack, updating the PRD, tracking features, after finishing a feature, when scope changes, or when the user mentions product-helper, PRODUCT.md, TaskTrack, timeline, or guardrails.
 ---
 
 # Product-Helper
 
-The human is the PM. You propose cards, update status from real work, and never invent completed work.
+The human is the PM. You update the files. Do not ask them to run `sync` or `status`. After `npx product-helper init`, keep working.
 
-You keep `.product-helper/` current yourself. Do not ask the human to run `sync` or `status` after every change. `npx product-helper init` is first install only. CLI `sync` / `status` are optional fallbacks when no agent is available.
-
-Workspace (target repo): `.product-helper/`
+Workspace: `.product-helper/` (local, gitignored in their repo). Do not tell them to commit it.
 
 | File | Purpose |
 | --- | --- |
-| `product.json` | Single source of truth |
-| `PRODUCT.md` | Living PRD |
-| `GUARDRAILS.md` | Default + custom rules you must honor |
+| `product.json` | Source of truth |
+| `PRODUCT.md` | Living product doc |
+| `GUARDRAILS.md` | Rules you must honor |
+| `TIMELINE.md` | What changed, and when |
 | `DECISIONS.md` | PM tradeoffs |
-| `CHANGELOG.md` | Change history |
-| `board/board.json` | Board projection |
-| `board/index.html` | Offline kanban + doc viewer |
+| `board/index.html` | TaskTrack (open in a browser) |
 
-If the CLI is not available, create and update these files yourself.
+Skills also live outside this folder so agents can find them: `.cursor/skills/`, `.claude/skills/`, `.agents/skills/`, plus short pointers in `AGENTS.md` / `CLAUDE.md`. Those stay in git. `.product-helper/` does not.
 
 ## Always before acting
 
-1. Re-read `.product-helper/GUARDRAILS.md` including **Custom guardrails**. Honor defaults and custom together. Custom never weakens a default safety rule.
-2. If the workspace is missing, run bootstrap.
-3. Read `product.json`, `PRODUCT.md`, and `board/board.json`.
-4. Do not read, print, or edit `.env`, `.env.*`, credentials, or private keys.
+1. Re-read `.product-helper/GUARDRAILS.md` including **Custom guardrails**.
+2. If the workspace is missing, run `npx product-helper init` (or bootstrap the same files).
+3. Read `product.json`, `PRODUCT.md`, and `TIMELINE.md`.
+4. Do not read, print, or edit `.env`, credentials, or private keys.
 
-## Bootstrap (first use)
+## After every major feature
 
-1. Scan the repo: README, package manifests, top-level layout, key source names. Skip secrets, `node_modules`, and build output.
-2. Infer product name, users, problem, features, and current status. Label inferences as inferred until the PM confirms.
-3. Create `.product-helper/` if missing. Do not overwrite Custom guardrails or the `<!-- USER-VISION -->` block.
-4. Seed kanban columns: Backlog, Ready, In Progress, Review, Done.
-5. Seed cards from inferred work. New work starts in Backlog or Ready — never Done.
-6. Tell the human how to open the board: `.product-helper/board/index.html` or `npx product-helper serve`.
+A major change is a **feature** added, finished, or removed — not a typo, lint, or small bug fix.
 
-If `npx product-helper` works, run `init` instead of hand-writing templates.
+1. Re-read guardrails.
+2. Update **feature** cards only on TaskTrack. Set `updatedAt`. Never add cards for small bug fixes.
+3. Update `PRODUCT.md`. Keep the USER-VISION block unless the PM asked to change it.
+4. Mark diffs: added `++text++` / `<ins class="ph-added">`, removed `~~text~~` / `<del class="ph-removed">`, replaced `==text==` / `<mark class="ph-replaced">`.
+5. Append a **timeline** event (`product.json` `timeline` + `TIMELINE.md`) whenever TaskTrack, the product doc, or the rules change. Include time, area (`tasktrack` / `prd` / `guardrails`), and a short plain-language title.
+6. Refresh `board/board.json` and `board/data.js`.
+7. Point the human at TaskTrack: `.product-helper/board/index.html` or `npx product-helper serve`.
 
-## After every major change
+Human accepts Done. You may move a card to Check when the feature is built. Do not invent completed work.
 
-A major change is a new feature, a refinement, a completed task, or removed/replaced scope.
+## TaskTrack rules
 
-Update the workspace files yourself:
+- Call it **TaskTrack**. Do not say kanban.
+- Columns: Ideas, Next, Doing, Check, Done.
+- Cards are features people would ship or cut. Skip chores, typos, and tiny fixes.
+- Write cards in short, plain language.
+- Empty columns stay visible.
 
-1. Re-read guardrails (defaults + custom).
-2. Update `product.json` cards: add, move, close, or relabel. Set `updatedAt`.
-3. Update `PRODUCT.md` sections that changed. Keep the USER-VISION block intact unless the PM asked to change vision.
-4. Mark PRD diffs (see [change-marks.md](references/change-marks.md)):
-   - added = green (`++text++` or `<ins class="ph-added">`)
-   - removed = red (`~~text~~` or `<del class="ph-removed">`)
-   - replaced = yellow (`==text==` or `<mark class="ph-replaced">`)
-5. Append a change record and a CHANGELOG line.
-6. If the PM accepted a tradeoff, add it to `DECISIONS.md`.
-7. Refresh `board/board.json` and `board/data.js` so the HTML board matches reality.
-8. Report links: board, PRODUCT.md, GUARDRAILS.md.
+## Bootstrap
 
-`npx product-helper sync` is optional (mechanical refresh or `--from-git` proposals). You still apply precise PRD marks and must not invent Done.
-
-## Board and PM rules
-
-- Human accepts Done. You may move a card to Review when implementation finished.
-- `--from-git` only proposes cards (Review + `git-inferred`). Do not auto-complete.
-- Cards need title, description, status, labels, feature link, and updated-at.
-- Empty columns stay visible with an empty state.
-
-## Guardrail reminders
-
-Never: read/write `.env` or secrets; commit credentials; change git config; force-push or hard-reset unless the user explicitly asked; exfiltrate private source; hit production or paid APIs without permission; weaken auth/RLS; skip irreversible migration consent.
-
-Prefer small diffs. Ask before destructive or irreversible actions.
+Scan README and source (skip secrets). Infer name, users, problem, and **features**. Seed TaskTrack. New cards start in Ideas or Next — never Done. Tell them how to open TaskTrack. Add `.product-helper/` to `.gitignore` if `init` has not.
 
 Full workflow: [workflow.md](references/workflow.md)

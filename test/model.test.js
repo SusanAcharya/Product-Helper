@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { emptyProduct, mergeModels } from "../src/lib/model.js";
+import { renderTimeline } from "../src/lib/render.js";
 
 const analysis = {
   name: "Harbor",
@@ -38,4 +39,32 @@ test("merge keeps human vision and existing cards", () => {
   assert.equal(merged.product.tagline, "Human tagline");
   assert.equal(merged.cards[0].status, "in-progress");
   assert.ok(merged.cards.some((card) => card.title === "Share links"));
+});
+
+test("seeded cards skip tiny bug-fix work", () => {
+  const model = emptyProduct({
+    ...analysis,
+    features: [
+      { title: "Editor", description: "Write notes", labels: ["feature"] },
+      { title: "Fix typo", description: "Tiny lint patch", labels: ["fix"] },
+    ],
+  });
+  assert.ok(model.cards.every((card) => card.title !== "Fix typo"));
+  assert.ok(model.timeline.some((event) => event.area === "tasktrack"));
+});
+
+test("timeline markdown is readable", () => {
+  const md = renderTimeline({
+    generatedAt: "2026-09-12T15:00:00.000Z",
+    timeline: [
+      {
+        at: "2026-09-12T15:00:00.000Z",
+        area: "prd",
+        title: "Product doc updated",
+        detail: "Wrote the problem in plain language.",
+      },
+    ],
+  });
+  assert.match(md, /Product doc/);
+  assert.match(md, /Product doc updated/);
 });

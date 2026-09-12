@@ -1,7 +1,8 @@
 # Changelog
 
-Generated: 2026-09-12T14:52:00.000Z
+Generated: 2026-09-12T15:10:00.000Z
 
+- 2026-09-12T15:10:00.000Z · **replaced** · tasktrack: Replaced the kanban name with TaskTrack, added a timeline, and gitignored the generated workspace in consumer repos.
 - 2026-09-12T14:52:00.000Z · **added** · distribution: Published product-helper@1.0.2 so npm leads with npx product-helper init.
 - 2026-09-12T14:50:00.000Z · **replaced** · readme: Replaced the README lead so one npx command is the product.
 - 2026-09-12T14:40:00.000Z · **added** · distribution: Published product-helper@1.0.1 so npm matches the agent-first docs.

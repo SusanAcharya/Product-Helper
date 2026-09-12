@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "product-helper",
-  "version": "1.0.2",
-  "description": "Living PRD, kanban PM board, and project guardrails for coding agents.",
+  "version": "1.1.0",
+  "description": "Living PRD, TaskTrack, and project guardrails for coding agents.",
   "author": {
     "name": "Susan Acharya"
   },
@@ -12,7 +12,7 @@
   "keywords": [
     "product",
     "prd",
-    "kanban",
+    "tasktrack",
     "guardrails",
     "project-management"
   ]

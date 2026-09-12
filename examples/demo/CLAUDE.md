@@ -1,7 +1,7 @@
 <!-- product-helper:start -->
 ## Product-Helper
 
-Claude should load the project skill at `.claude/skills/product-helper/SKILL.md` when bootstrapping docs, updating the PRD, or finishing major work.
+Load `.claude/skills/product-helper/SKILL.md` when finishing a feature or updating the product plan.
 
-Always re-read `.product-helper/GUARDRAILS.md` including Custom guardrails. After major work, update the kanban board and PRODUCT.md yourself. Do not ask the human to run `sync` or `status`. The human is the PM.
+Re-read `.product-helper/GUARDRAILS.md`. Update TaskTrack, the product doc, and the timeline yourself. Feature cards only. Do not ask the human to run `sync`. `.product-helper/` is gitignored. The human is the PM.
 <!-- product-helper:end -->

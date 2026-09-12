@@ -77,7 +77,7 @@ function extractHeadings(markdown) {
 
 const SKIP_HEADINGS = /^(users?|problem|features?|vision|capabilities|install(?:ation)?|usage|getting started|license|contributing|changelog|example|examples|workspace|core features|deliverables|current status|when to use|role|always|open|working here|commands|options|faq|docs|documentation|table of contents|overview|about|cli(?: \(optional\))?|how it works|what you get|after init|files\b.*|other install.*)$/i;
 
-function inferFeatures(pkg, headings, sourceHints, top, identity = {}) {
+function inferFeatures(pkg, headings, _sourceHints, top, identity = {}) {
   const found = [];
   const seen = new Set();
   const add = (title, description, labels = []) => {
@@ -86,27 +86,18 @@ function inferFeatures(pkg, headings, sourceHints, top, identity = {}) {
     if (SKIP_HEADINGS.test(title)) return;
     if (/^[A-H]\.\s/.test(title)) return;
     if (slugify(title) === identity.slug || slugify(title) === slugify(identity.name || "")) return;
+    if (!isFeatureWorthy(title, description)) return;
     seen.add(key);
-    found.push({ title, description, labels });
+    found.push({ title, description, labels: labels.includes("feature") ? labels : ["feature", ...labels] });
   };
 
   for (const heading of headings) {
-    add(heading, `Documented in the project README as “${heading}”.`, ["docs"]);
-  }
-
-  const skipLeaves = new Set([
-    "index", "main", "app", "utils", "helpers", "types", "lib", "commands",
-    "src", "test", "tests", "bin", "assets", "templates", "hooks", "rules",
-  ]);
-  for (const hint of sourceHints) {
-    const leaf = hint.split("/").pop().replace(/\.[a-z0-9]+$/i, "");
-    if (skipLeaves.has(leaf.toLowerCase())) continue;
-    add(humanize(leaf), `Inferred from source path \`${hint}\`.`, ["inferred"]);
+    add(heading, `A product feature described in the README as “${heading}”.`, ["docs"]);
   }
 
   if (top.some((entry) => entry.name === "cli" || entry.name === "bin")) {
     if (![...seen].some((key) => key.includes("cli") || key.includes("command-line"))) {
-      add("Command-line interface", "Repository contains a CLI entrypoint.", ["cli"]);
+      add("Command-line interface", "People install and run this product from the terminal.", ["cli"]);
     }
   }
 
@@ -128,9 +119,9 @@ function inferUsers(readme, description) {
   if (blob.includes("developer") || blob.includes("agent") || blob.includes("cli")) {
     users.push("Software teams and coding agents working in a repository");
   }
-  if (blob.includes("product") || blob.includes("pm") || blob.includes("kanban")) {
-    users.push("Human product managers who own priorities and accept work");
-  }
+    if (blob.includes("product") || blob.includes("pm") || blob.includes("tasktrack") || blob.includes("prd")) {
+      users.push("Human product managers who own priorities and accept work");
+    }
   if (users.length === 0) {
     users.push("People who use or build this repository");
   }
@@ -141,7 +132,17 @@ function inferProblem(readme, description, name) {
   const paragraph = firstParagraph(readme);
   if (isCompleteProblem(paragraph)) return paragraph;
   if (description && description.length > 40) return description;
-  return `${name} needs a living product document and a visible board so humans and agents share one plan.`;
+  return `${name} needs a living product document and a visible TaskTrack so humans and agents share one plan.`;
+}
+
+const SMALL_WORK = /\b(bug|typo|lint|format|hotfix|patch|nit|chore|whitespace|comment|fix)\b/i;
+
+export function isFeatureWorthy(title, description = "") {
+  const text = `${title} ${description}`.trim();
+  if (title.length < 3) return false;
+  if (SMALL_WORK.test(text)) return false;
+  if (/\b(smallest|minor|tiny)\b/i.test(text)) return false;
+  return true;
 }
 
 function isCompleteProblem(paragraph) {

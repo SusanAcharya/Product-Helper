@@ -15,15 +15,17 @@ export function initCommand(cwd, flags) {
   console.log(`${label} Product-Helper workspace in ${result.paths.root}`);
   console.log(`  Product:    ${result.model.product.name}`);
   console.log(`  Cards:      ${result.model.cards.length}`);
-  console.log(`  Board:      ${result.paths.boardHtml}`);
+  console.log(`  TaskTrack:  ${result.paths.boardHtml}`);
   console.log(`  PRD:        ${result.paths.productMd}`);
+  console.log(`  Timeline:   ${result.paths.timelineMd}`);
   console.log(`  Guardrails: ${result.paths.guardrailsMd}`);
   console.log("");
-  console.log("Open the board:");
+  console.log("Open TaskTrack:");
   console.log("  npx product-helper serve");
   console.log("  or open .product-helper/board/index.html");
   console.log("");
-  console.log("After init, your coding agent updates the PRD and board.");
+  console.log(".product-helper/ is local. It is in .gitignore — you do not commit it.");
+  console.log("Your coding agent updates the product doc, TaskTrack, and timeline.");
   console.log("You do not need to run sync after every change.");
   return 0;
 }

@@ -1,58 +1,58 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T14:52:00.000Z",
+  "generatedAt": "2026-09-12T15:10:00.000Z",
   "generatedBy": "product-helper",
   "product": {
     "name": "Product-Helper",
     "slug": "product-helper",
-    "tagline": "One command installs living PRD, kanban, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.",
+    "tagline": "One command installs living PRD, TaskTrack, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.",
     "users": [
       "Software teams and coding agents working in a repository",
       "Human product managers who own priorities and accept work"
     ],
-    "problem": "Teams and coding agents lose the plan: the PRD goes stale, the board lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living PRD, one kanban the human PM owns, and guardrails every agent must re-read.",
-    "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living PRD, a kanban board the human PM owns, and guardrails every coding agent must honor. Distribution is the product — npm CLI, Cursor plugin, and copy-into-repo skills for Cursor, Claude, and ChatGPT/Codex.",
-    "version": "1.0.2"
+    "problem": "Teams and coding agents lose the plan: the product doc goes stale, the work list lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living product doc, TaskTrack the human owns, and rules every agent must re-read.",
+    "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living product doc, TaskTrack the human PM owns, and guardrails every coding agent must honor. One command installs the skills. The generated workspace stays local.",
+    "version": "1.1.0"
   },
   "milestones": [
     {
       "id": "now",
-      "title": "Agent-first loop",
+      "title": "Agent-first TaskTrack",
       "horizon": "now",
       "status": "active",
-      "summary": "Install once; agents keep the PRD and board current. CLI is a fallback."
+      "summary": "Install once. Agents keep the product doc, TaskTrack, and timeline current. .product-helper stays local."
     },
     {
       "id": "next",
       "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Human PM accepts Review cards for the 1.0.2 npm release."
+      "summary": "Human accepts Check cards for 1.1.0."
     },
     {
       "id": "later",
-      "title": "Harden distribution",
+      "title": "Grow later",
       "horizon": "later",
       "status": "later",
-      "summary": "Cursor marketplace and other optional distribution, not new daily-loop commands."
+      "summary": "Cursor marketplace and other optional distribution."
     }
   ],
   "columns": [
     {
       "id": "backlog",
-      "title": "Backlog"
+      "title": "Ideas"
     },
     {
       "id": "ready",
-      "title": "Ready"
+      "title": "Next"
     },
     {
       "id": "in-progress",
-      "title": "In Progress"
+      "title": "Doing"
     },
     {
       "id": "review",
-      "title": "Review"
+      "title": "Check"
     },
     {
       "id": "done",
@@ -77,17 +77,16 @@
     },
     {
       "id": "ph-002",
-      "title": "Kanban PM board",
-      "description": "Offline HTML board with card drawer, now/next/later, and a highlighted product-doc viewer.",
+      "title": "TaskTrack",
+      "description": "A simple, phone-friendly plan of features. Not for small bug fixes.",
       "status": "review",
       "labels": [
         "now",
-        "board",
         "feature"
       ],
-      "feature": "kanban-pm-board",
+      "feature": "tasktrack",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-12T15:10:00.000Z",
       "source": "agent"
     },
     {
@@ -107,7 +106,7 @@
     {
       "id": "ph-004",
       "title": "Multi-agent skills",
-      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills, published on npm as product-helper@1.0.2.",
+      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills.",
       "status": "review",
       "labels": [
         "distribution",
@@ -121,7 +120,7 @@
     {
       "id": "ph-005",
       "title": "CLI",
-      "description": "init installs the workspace. serve opens the board. sync and status are optional fallbacks, not the daily loop.",
+      "description": "init installs the workspace and gitignores it. serve opens TaskTrack.",
       "status": "review",
       "labels": [
         "cli",
@@ -135,15 +134,30 @@
     {
       "id": "ph-006",
       "title": "Agent-first usage story",
-      "description": "README leads with `npx product-helper init`. That one command copies skills; agents then update the PRD and board. Humans do not run sync after every change.",
+      "description": "One npx command copies skills. Agents then update the product doc, TaskTrack, and timeline.",
       "status": "review",
       "labels": [
         "now",
-        "docs"
+        "docs",
+        "feature"
       ],
       "feature": "agent-first-loop",
       "createdAt": "2026-09-12T14:35:00.000Z",
-      "updatedAt": "2026-09-12T14:50:00.000Z",
+      "updatedAt": "2026-09-12T15:10:00.000Z",
+      "source": "agent"
+    },
+    {
+      "id": "ph-007",
+      "title": "Timeline",
+      "description": "A dated list of changes to TaskTrack, the product doc, and the rules.",
+      "status": "review",
+      "labels": [
+        "now",
+        "feature"
+      ],
+      "feature": "timeline",
+      "createdAt": "2026-09-12T15:10:00.000Z",
+      "updatedAt": "2026-09-12T15:10:00.000Z",
       "source": "agent"
     }
   ],
@@ -210,6 +224,15 @@
       "from": "product-helper@1.0.1",
       "to": "product-helper@1.0.2",
       "summary": "Published product-helper@1.0.2 so npm leads with npx product-helper init."
+    },
+    {
+      "id": "chg-tasktrack",
+      "at": "2026-09-12T15:10:00.000Z",
+      "kind": "replaced",
+      "section": "tasktrack",
+      "from": "kanban board",
+      "to": "TaskTrack",
+      "summary": "Replaced the kanban name with TaskTrack, added a timeline, and gitignored the generated workspace in consumer repos."
     }
   ],
   "decisions": [
@@ -251,5 +274,39 @@
       "templates",
       "test"
     ]
-  }
+  },
+  "timeline": [
+    {
+      "id": "tl-bootstrap",
+      "at": "2026-09-12T13:51:47.786Z",
+      "area": "tasktrack",
+      "action": "added",
+      "title": "TaskTrack started",
+      "detail": "Created the local workspace."
+    },
+    {
+      "id": "tl-agent-first",
+      "at": "2026-09-12T14:35:00.000Z",
+      "area": "prd",
+      "action": "replaced",
+      "title": "Docs say the agent does the work",
+      "detail": "Humans do not run sync after every change."
+    },
+    {
+      "id": "tl-npx",
+      "at": "2026-09-12T14:50:00.000Z",
+      "area": "prd",
+      "action": "replaced",
+      "title": "README leads with one command",
+      "detail": "npx product-helper init is the product."
+    },
+    {
+      "id": "tl-tasktrack",
+      "at": "2026-09-12T15:10:00.000Z",
+      "area": "tasktrack",
+      "action": "replaced",
+      "title": "Plan is now TaskTrack",
+      "detail": "Feature cards only. Phone-friendly. Timeline added. Consumer workspace is gitignored."
+    }
+  ]
 }

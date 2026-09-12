@@ -1,7 +1,7 @@
 {
   "name": "product-helper",
-  "version": "1.0.2",
-  "description": "Living PRD, kanban PM board, and project guardrails. Agents inspect the repo, keep PRODUCT.md and the board in sync, and honor GUARDRAILS.md after every major change.",
+  "version": "1.1.0",
+  "description": "Living PRD, TaskTrack, and project guardrails. Agents inspect the repo, keep PRODUCT.md and TaskTrack in sync, and honor GUARDRAILS.md after every feature.",
   "author": {
     "name": "Susan Acharya"
   },
@@ -11,7 +11,7 @@
   "keywords": [
     "product",
     "prd",
-    "kanban",
+    "tasktrack",
     "guardrails",
     "project-management",
     "skills"

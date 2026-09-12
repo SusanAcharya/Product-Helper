@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyzeRepo } from "../src/lib/analyze.js";
+import { analyzeRepo, isFeatureWorthy } from "../src/lib/analyze.js";
 import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -27,4 +27,10 @@ A shippable notes system. Install it into any repo so agents can:
   const analysis = analyzeRepo(dir);
   assert.equal(analysis.problem, "Notes for teams who lose research between tools.");
   assert.ok(!analysis.problem.endsWith("can:"));
+});
+
+test("small bug fixes are not features", () => {
+  assert.equal(isFeatureWorthy("Fix typo in README"), false);
+  assert.equal(isFeatureWorthy("Hotfix login crash"), false);
+  assert.equal(isFeatureWorthy("Living PRD", "A product document agents keep current."), true);
 });

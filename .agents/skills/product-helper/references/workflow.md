@@ -1,73 +1,55 @@
 # Product-Helper workflow
 
-The agent owns the loop. After `init`, update `.product-helper/` yourself when work lands. Do not send the human to `sync` or `status` as the daily path.
+After `init`, you update the files. The human does not run `sync` as the daily path.
+
+`.product-helper/` is local and gitignored in their repo. Skills/rules/hooks stay in git so agents load automatically.
 
 ## File map
 
 ```
-.product-helper/
-  product.json          # source of truth
+.product-helper/          # generated, do not commit in consumer repos
+  product.json
   PRODUCT.md
   GUARDRAILS.md
+  TIMELINE.md
   DECISIONS.md
   CHANGELOG.md
-  board/
+  board/                  # TaskTrack UI
     index.html
     board.css
     board.js
     board.json
-    data.js             # inlined snapshot so the board works via file://
+    data.js
 ```
 
-Skills installed by `product-helper init`:
+Also installed (keep in git):
 
 - `.cursor/skills/product-helper/`
 - `.claude/skills/product-helper/`
 - `.agents/skills/product-helper/`
-- `.cursor/hooks.json` + `.cursor/hooks/product-helper-stop.js`
-- `AGENTS.md` snippet, optional `CLAUDE.md` snippet, `CHATGPT.md`
+- `.cursor/hooks.json` + hook script
+- `AGENTS.md` / `CLAUDE.md` snippets
 
-## Bootstrap checklist
+## After a feature
 
-- [ ] Inspect README + manifests + source layout (no secrets)
-- [ ] Create workspace if missing (`npx product-helper init` when the CLI is available)
-- [ ] Preserve Custom guardrails and USER-VISION
-- [ ] Seed columns and inferred cards
-- [ ] Write product.json, markdown, board snapshot
-- [ ] Point the human at the board URL / file
+- [ ] Re-read GUARDRAILS.md
+- [ ] Update feature cards only
+- [ ] Update PRODUCT.md + marks
+- [ ] Append a timeline event
+- [ ] Refresh TaskTrack snapshot
+- [ ] Give the human TaskTrack, PRODUCT.md, TIMELINE.md
 
-## After major work (agent)
-
-- [ ] Re-read GUARDRAILS.md (defaults + custom)
-- [ ] Update matching cards; do not fabricate Done
-- [ ] Update PRD sections + change marks
-- [ ] Append CHANGELOG + optional DECISIONS
-- [ ] Regenerate board.json and data.js
-- [ ] Give the human the three links
-
-`npx product-helper sync` is an optional fallback (mechanical refresh or `--from-git` proposals).
-
-## product.json card shape
+## Timeline event
 
 ```json
 {
-  "id": "ph-001",
-  "title": "CLI init",
-  "description": "Scaffold skills and workspace into the target repo.",
-  "status": "in-progress",
-  "labels": ["feature"],
-  "feature": "cli-init",
-  "createdAt": "2026-09-12T00:00:00.000Z",
-  "updatedAt": "2026-09-12T00:00:00.000Z",
-  "source": "bootstrap"
+  "id": "tl-001",
+  "at": "2026-09-12T15:00:00.000Z",
+  "area": "tasktrack",
+  "action": "moved",
+  "title": "Living PRD moved to Check",
+  "detail": "The feature is built. Waiting for the human to mark Done."
 }
 ```
 
-Statuses: `backlog` | `ready` | `in-progress` | `review` | `done`
-
-## Idempotent edits
-
-- Never replace text between `<!-- CUSTOM-GUARDRAILS:START -->` and `<!-- CUSTOM-GUARDRAILS:END -->`
-- Never replace text between `<!-- USER-VISION:START -->` and `<!-- USER-VISION:END -->` unless the PM asked
-- Merge cards by `id` or title; keep human status changes
-- Refresh board HTML/CSS only when missing or when the user asks to reset assets
+`area` is `tasktrack`, `prd`, or `guardrails`.

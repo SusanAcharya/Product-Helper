@@ -1,11 +1,11 @@
 import { nowIso } from "./marks.js";
-import { slugify } from "./analyze.js";
+import { isFeatureWorthy, slugify } from "./analyze.js";
 
 export const COLUMNS = [
-  { id: "backlog", title: "Backlog" },
-  { id: "ready", title: "Ready" },
-  { id: "in-progress", title: "In Progress" },
-  { id: "review", title: "Review" },
+  { id: "backlog", title: "Ideas" },
+  { id: "ready", title: "Next" },
+  { id: "in-progress", title: "Doing" },
+  { id: "review", title: "Check" },
   { id: "done", title: "Done" },
 ];
 
@@ -28,6 +28,16 @@ export function emptyProduct(analysis, generatedBy = "product-helper") {
     milestones: defaultMilestones(analysis),
     columns: COLUMNS,
     cards,
+    timeline: [
+      {
+        id: "tl-bootstrap",
+        at: generatedAt,
+        area: "tasktrack",
+        action: "added",
+        title: "TaskTrack started",
+        detail: "Created the local workspace from the repository.",
+      },
+    ],
     changes: [
       {
         id: "chg-bootstrap",
@@ -52,17 +62,19 @@ export function emptyProduct(analysis, generatedBy = "product-helper") {
 
 export function seedCards(analysis) {
   const generatedAt = nowIso();
-  return analysis.features.map((feature, index) => ({
-    id: `ph-${String(index + 1).padStart(3, "0")}`,
-    title: feature.title,
-    description: feature.description,
-    status: index === 0 ? "ready" : "backlog",
-    labels: feature.labels || [],
-    feature: slugify(feature.title),
-    createdAt: generatedAt,
-    updatedAt: generatedAt,
-    source: "bootstrap",
-  }));
+  return (analysis.features || [])
+    .filter((feature) => isFeatureWorthy(feature.title, feature.description))
+    .map((feature, index) => ({
+      id: `ph-${String(index + 1).padStart(3, "0")}`,
+      title: feature.title,
+      description: feature.description,
+      status: index === 0 ? "ready" : "backlog",
+      labels: ["feature", ...(feature.labels || []).filter((label) => label !== "feature")],
+      feature: slugify(feature.title),
+      createdAt: generatedAt,
+      updatedAt: generatedAt,
+      source: "bootstrap",
+    }));
 }
 
 export function defaultMilestones(analysis) {
@@ -72,21 +84,21 @@ export function defaultMilestones(analysis) {
       title: "Make the product understandable",
       horizon: "now",
       status: "active",
-      summary: `Document ${analysis.name}, seed the board, and confirm the first shippable slice.`,
+      summary: `Write down what ${analysis.name} is, put the first features on TaskTrack, and agree what ships first.`,
     },
     {
       id: "next",
-      title: "Close the highest-value gaps",
+      title: "Finish the next features",
       horizon: "next",
       status: "planned",
-      summary: "Turn inferred features into confirmed deliverables and move Ready work through Review.",
+      summary: "Move ready features through Doing and Check. The human marks Done.",
     },
     {
       id: "later",
-      title: "Harden and scale the system",
+      title: "Grow later",
       horizon: "later",
       status: "later",
-      summary: "Polish distribution, automation, and long-horizon product bets.",
+      summary: "Bigger bets after the first slice is real.",
     },
   ];
 }
@@ -100,6 +112,7 @@ export function boardView(model) {
     cards: model.cards,
     milestones: model.milestones,
     changes: model.changes.slice(-40),
+    timeline: (model.timeline || []).slice(-80),
   };
 }
 
@@ -110,7 +123,7 @@ export function mergeModels(existing, next) {
 
   for (const card of next.cards) {
     const match = cardsById.get(card.id) || cardsByTitle.get(card.title.toLowerCase());
-    if (!match) {
+    if (!match && isFeatureWorthy(card.title, card.description)) {
       existing.cards.push({ ...card, source: card.source || "sync" });
     }
   }
@@ -126,8 +139,23 @@ export function mergeModels(existing, next) {
     slug: existing.product.slug || next.product.slug,
   };
   if (!existing.milestones?.length) existing.milestones = next.milestones;
+  if (!existing.timeline) existing.timeline = next.timeline || [];
   existing.analysis = next.analysis;
   return existing;
+}
+
+export function appendTimeline(model, event) {
+  model.timeline = model.timeline || [];
+  model.timeline.push({
+    id: event.id || `tl-${Date.now()}`,
+    at: event.at || nowIso(),
+    area: event.area || "tasktrack",
+    action: event.action || "updated",
+    title: event.title,
+    detail: event.detail || "",
+  });
+  model.generatedAt = event.at || nowIso();
+  return model;
 }
 
 function preferHuman(current, inferred) {

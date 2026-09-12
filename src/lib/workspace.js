@@ -20,6 +20,7 @@ import {
   renderDataJs,
   renderDecisions,
   renderProductMarkdown,
+  renderTimeline,
 } from "./render.js";
 import { applyGitInferences, inferFromGit, recentCommits } from "./git.js";
 
@@ -32,6 +33,7 @@ export function initWorkspace(cwd, options = {}) {
   const model = mergeModels(existing, emptyProduct(analysis));
 
   writeWorkspaceFiles(cwd, model, { forceBoard: true });
+  ensureGitignore(cwd);
   installSkills(cwd, options);
   if (options.hooks !== false) installHooks(cwd);
   if (options.agentsMd !== false) appendAgentsSnippet(cwd);
@@ -77,12 +79,13 @@ export function writeWorkspaceFiles(cwd, model, { forceBoard = false } = {}) {
   writeJson(paths.boardJson, boardView(model));
   writeText(paths.productMd, renderProductMarkdown(model, { userVision }));
   writeText(paths.changelogMd, renderChangelog(model));
+  writeText(paths.timelineMd, renderTimeline(model));
   writeText(paths.decisionsMd, renderDecisions(model, readTextIf(paths.decisionsMd)));
 
   const guardTemplate = readText(path.join(TEMPLATES, "workspace", "GUARDRAILS.md"));
   writeText(paths.guardrailsMd, preserveCustomGuardrails(guardTemplate, readTextIf(paths.guardrailsMd)));
 
-  copyBoardAssets(paths, forceBoard);
+  copyBoardAssets(paths, true);
   writeText(
     paths.dataJs,
     renderDataJs(model, {
@@ -90,8 +93,19 @@ export function writeWorkspaceFiles(cwd, model, { forceBoard = false } = {}) {
       guardrails: readText(paths.guardrailsMd),
       decisions: readText(paths.decisionsMd),
       changelog: readText(paths.changelogMd),
+      timeline: readText(paths.timelineMd),
     }),
   );
+}
+
+export function ensureGitignore(cwd) {
+  const dest = path.join(cwd, ".gitignore");
+  const existing = readTextIf(dest) || "";
+  if (/(^|\n)\.product-helper\/?(\n|$)/.test(existing)) return false;
+  const block = "# Product-Helper local workspace (generated)\n.product-helper/\n";
+  const next = existing.trimEnd() ? `${existing.trimEnd()}\n\n${block}` : block;
+  writeText(dest, next);
+  return true;
 }
 
 function copyBoardAssets(paths, forceBoard) {

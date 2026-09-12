@@ -1,28 +1,36 @@
-const data = window.__PH__ || { product: {}, cards: [], columns: [], milestones: [], docs: {} };
+const data = window.__PH__ || { product: {}, cards: [], columns: [], milestones: [], timeline: [], docs: {} };
 
 const $ = (id) => document.getElementById(id);
 const views = {
   board: $("view-board"),
   roadmap: $("view-roadmap"),
+  timeline: $("view-timeline"),
   product: $("view-product"),
   guardrails: $("view-guardrails"),
-  decisions: $("view-decisions"),
+};
+
+const STATUS_LABEL = {
+  backlog: "Ideas",
+  ready: "Next",
+  "in-progress": "Doing",
+  review: "Check",
+  done: "Done",
 };
 
 function init() {
   applyTheme(localStorage.getItem("ph-theme") || preferredTheme());
   $("product-name").textContent = data.product?.name || "Untitled product";
   $("product-tagline").textContent = data.product?.tagline || "";
-  document.title = `${data.product?.name || "Product"} · Product-Helper`;
+  document.title = `${data.product?.name || "Product"} · TaskTrack`;
   $("generated-at").textContent = data.generatedAt
-    ? `Generated ${new Date(data.generatedAt).toLocaleString()}`
+    ? `Updated ${new Date(data.generatedAt).toLocaleString()}`
     : "";
 
   renderBoard("");
   renderRoadmap();
-  views.product.innerHTML = renderMarkdown(data.docs?.product || "_Run sync to load PRODUCT.md._");
-  views.guardrails.innerHTML = renderMarkdown(data.docs?.guardrails || "_Guardrails not loaded._");
-  views.decisions.innerHTML = renderMarkdown(data.docs?.decisions || "_No decisions yet._");
+  renderTimeline();
+  views.product.innerHTML = renderMarkdown(data.docs?.product || "_No product doc yet. Run init._");
+  views.guardrails.innerHTML = renderMarkdown(data.docs?.guardrails || "_No rules yet._");
 
   document.querySelectorAll(".tab").forEach((tab) => {
     tab.addEventListener("click", () => showView(tab.dataset.view, tab));
@@ -68,10 +76,10 @@ function renderBoard(query) {
   const columns = data.columns?.length
     ? data.columns
     : [
-        { id: "backlog", title: "Backlog" },
-        { id: "ready", title: "Ready" },
-        { id: "in-progress", title: "In Progress" },
-        { id: "review", title: "Review" },
+        { id: "backlog", title: "Ideas" },
+        { id: "ready", title: "Next" },
+        { id: "in-progress", title: "Doing" },
+        { id: "review", title: "Check" },
         { id: "done", title: "Done" },
       ];
   views.board.className = "view is-active board";
@@ -80,11 +88,11 @@ function renderBoard(query) {
       const cards = (data.cards || []).filter(
         (card) =>
           card.status === column.id &&
-          (!q || `${card.title} ${card.description} ${(card.labels || []).join(" ")}`.toLowerCase().includes(q)),
+          (!q || `${card.title} ${card.description}`.toLowerCase().includes(q)),
       );
       const body = cards.length
         ? cards.map((card) => cardButton(card)).join("")
-        : `<p class="empty">Nothing here yet.</p>`;
+        : `<p class="empty">No features here yet.</p>`;
       return `<section class="column"><h2>${escapeHtml(column.title)} <span class="count">${cards.length}</span></h2>${body}</section>`;
     })
     .join("");
@@ -94,11 +102,9 @@ function renderBoard(query) {
 }
 
 function cardButton(card) {
-  const labels = (card.labels || []).map((label) => `<span class="chip">${escapeHtml(label)}</span>`).join("");
   return `<button type="button" class="card" data-card="${escapeHtml(card.id)}">
     <h3>${escapeHtml(card.title)}</h3>
     <p>${escapeHtml(truncate(card.description || "", 110))}</p>
-    <div class="labels">${labels}</div>
   </button>`;
 }
 
@@ -106,11 +112,11 @@ function renderRoadmap() {
   views.roadmap.className = "view roadmap";
   const items = data.milestones?.length
     ? data.milestones
-    : [{ horizon: "now", title: "Now", summary: "No milestones yet." }];
+    : [{ horizon: "now", title: "Now", summary: "Nothing planned yet." }];
   views.roadmap.innerHTML = items
     .map(
       (item) => `<article class="horizon">
-        <p class="eyebrow">${escapeHtml(item.horizon)}</p>
+        <p class="eyebrow">${escapeHtml(simpleHorizon(item.horizon))}</p>
         <h2>${escapeHtml(item.title)}</h2>
         <p>${escapeHtml(item.summary || "")}</p>
       </article>`,
@@ -118,18 +124,54 @@ function renderRoadmap() {
     .join("");
 }
 
+function renderTimeline() {
+  views.timeline.className = "view timeline";
+  const events = (data.timeline || []).slice().reverse();
+  if (!events.length) {
+    views.timeline.innerHTML = `<p class="empty">No events yet. When the product doc, TaskTrack, or rules change, they show up here.</p>`;
+    return;
+  }
+  views.timeline.innerHTML = events
+    .map(
+      (event) => `<article class="event">
+        <time datetime="${escapeHtml(event.at || "")}">${escapeHtml(formatWhen(event.at))}</time>
+        <p class="eyebrow">${escapeHtml(areaLabel(event.area))}</p>
+        <h3>${escapeHtml(event.title)}</h3>
+        <p>${escapeHtml(event.detail || "")}</p>
+      </article>`,
+    )
+    .join("");
+}
+
+function simpleHorizon(value) {
+  if (value === "now") return "Now";
+  if (value === "next") return "Next";
+  if (value === "later") return "Later";
+  return value || "Now";
+}
+
+function areaLabel(area) {
+  if (area === "prd") return "Product doc";
+  if (area === "guardrails") return "Rules";
+  return "TaskTrack";
+}
+
+function formatWhen(value) {
+  if (!value) return "Unknown time";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? value : date.toLocaleString();
+}
+
 function openCard(id) {
   const card = (data.cards || []).find((item) => item.id === id);
   if (!card) return;
   $("drawer-title").textContent = card.title;
-  $("drawer-status").textContent = card.status;
+  $("drawer-status").textContent = STATUS_LABEL[card.status] || card.status;
   $("drawer-desc").textContent = card.description || "";
   const meta = [
-    ["ID", card.id],
-    ["Feature", card.feature || "—"],
-    ["Labels", (card.labels || []).join(", ") || "—"],
+    ["Where", STATUS_LABEL[card.status] || card.status],
+    ["Feature", card.feature || card.title],
     ["Updated", card.updatedAt ? new Date(card.updatedAt).toLocaleString() : "—"],
-    ["Source", card.source || "—"],
   ];
   $("drawer").querySelector(".meta").innerHTML = meta
     .map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`)

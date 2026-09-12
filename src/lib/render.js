@@ -48,7 +48,7 @@ ${(model.milestones || [])
 
 ## Change tracking
 
-Marks render on GitHub and in the Product-Helper board:
+Marks show on GitHub and in TaskTrack:
 
 - ${markAdded("added")}
 - ${markRemoved("removed")}
@@ -84,7 +84,7 @@ function renderFeatures(model) {
           : card.source === "sync" || card.source === "bootstrap"
             ? `${card.title} ${card.source === "sync" ? markAdded("added") : ""}`
             : card.title;
-      return `- **${String(label).trim()}** — ${card.description} _(board: ${card.status})_`;
+      return `- **${String(label).trim()}** — ${card.description} _(TaskTrack: ${card.status})_`;
     })
     .join("\n");
 }
@@ -118,6 +118,29 @@ function renderChangeLine(change) {
     return `- ${stamp} · ${markRemoved(change.summary)}`;
   }
   return `- ${stamp} · ${markReplaced(change.summary)}`;
+}
+
+export function renderTimeline(model) {
+  const events = (model.timeline || []).slice().reverse();
+  const lines = events.map((event) => {
+    const when = shortDate(event.at);
+    const area = areaLabel(event.area);
+    return `- **${when}** · ${area} · ${event.title}${event.detail ? ` — ${event.detail}` : ""}`;
+  });
+  return `# Timeline
+
+What changed in TaskTrack, the product doc, and the rules.
+
+Generated: ${model.generatedAt}
+
+${lines.join("\n") || "_Nothing recorded yet._"}
+`;
+}
+
+function areaLabel(area) {
+  if (area === "prd") return "Product doc";
+  if (area === "guardrails") return "Rules";
+  return "TaskTrack";
 }
 
 export function renderChangelog(model) {
@@ -174,6 +197,7 @@ export function renderDataJs(model, docs) {
     cards: model.cards,
     milestones: model.milestones,
     changes: model.changes,
+    timeline: model.timeline,
     decisions: model.decisions,
     docs,
   };

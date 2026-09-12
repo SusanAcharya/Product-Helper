@@ -1,11 +1,11 @@
 ---
-description: Keep Product-Helper PRD, board, and guardrails current after major work.
+description: Keep Product-Helper TaskTrack, product doc, and timeline current after feature work.
 alwaysApply: true
 ---
 
 This workspace uses Product-Helper.
 
 - Re-read `.product-helper/GUARDRAILS.md` (defaults + Custom) before acting.
-- After major features, refinements, completed tasks, or scope changes, update `.product-helper/product.json`, `PRODUCT.md` with add/remove/replace marks, and the kanban board. Do not ask the human to run `sync` or `status`.
-- The human is the PM. Never invent completed work.
-- Skill: `skills/product-helper/SKILL.md` (also copied into `.cursor/skills/product-helper/` by `npx product-helper init`)
+- After a feature, update TaskTrack, PRODUCT.md, and TIMELINE.md. Do not ask the human to run `sync`.
+- Cards are features only — not small bug fixes.
+- Skill: `skills/product-helper/SKILL.md`

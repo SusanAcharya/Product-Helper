@@ -12,9 +12,10 @@ export function statusCommand(cwd) {
   console.log(status.product?.name || "Product-Helper");
   console.log(`  Generated:  ${status.generatedAt}`);
   console.log(`  Cards:      ${status.cards}`);
-  console.log(`  Board:      ${status.paths.boardHtml}`);
+  console.log(`  TaskTrack:  ${status.paths.boardHtml}`);
   console.log(`  Serve:      npx product-helper serve   → http://127.0.0.1:4173/`);
   console.log(`  PRODUCT:    ${status.paths.productMd}`);
+  console.log(`  Timeline:   ${status.paths.timelineMd}`);
   console.log(`  Guardrails: ${status.paths.guardrailsMd}`);
   console.log(`  Decisions:  ${status.paths.decisionsMd}`);
   console.log(`  Store:      ${status.paths.productJson}`);

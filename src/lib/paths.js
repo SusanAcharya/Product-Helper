@@ -49,6 +49,7 @@ export function workspacePaths(cwd = process.cwd()) {
     guardrailsMd: path.join(root, "GUARDRAILS.md"),
     decisionsMd: path.join(root, "DECISIONS.md"),
     changelogMd: path.join(root, "CHANGELOG.md"),
+    timelineMd: path.join(root, "TIMELINE.md"),
     boardDir: board,
     boardHtml: path.join(board, "index.html"),
     boardCss: path.join(board, "board.css"),

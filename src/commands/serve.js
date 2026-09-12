@@ -17,7 +17,7 @@ export function serveCommand(cwd, flags) {
   const root = path.resolve(cwd);
   const paths = workspacePaths(root);
   if (!exists(paths.boardHtml)) {
-    console.error("No board found. Run `npx product-helper init` first.");
+    console.error("No TaskTrack found. Run `npx product-helper init` first.");
     return 1;
   }
 
@@ -42,10 +42,11 @@ export function serveCommand(cwd, flags) {
 
   server.listen(port, "127.0.0.1", () => {
     const url = `http://127.0.0.1:${port}/`;
-    console.log(`Product-Helper board`);
+    console.log(`TaskTrack`);
     console.log(`  ${url}`);
-    console.log(`  PRD:        ${url}PRODUCT.md`);
-    console.log(`  Guardrails: ${url}GUARDRAILS.md`);
+    console.log(`  Product:    ${url}PRODUCT.md`);
+    console.log(`  Timeline:   ${url}TIMELINE.md`);
+    console.log(`  Rules:      ${url}GUARDRAILS.md`);
     console.log("Press Ctrl+C to stop.");
   });
 
@@ -66,6 +67,7 @@ function resolvePublic(paths, pathname) {
     "GUARDRAILS.md": paths.guardrailsMd,
     "DECISIONS.md": paths.decisionsMd,
     "CHANGELOG.md": paths.changelogMd,
+    "TIMELINE.md": paths.timelineMd,
     "product.json": paths.productJson,
   };
   if (map[clean]) return map[clean];

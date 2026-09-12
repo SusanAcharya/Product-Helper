@@ -4,11 +4,11 @@ import { serveCommand } from "./commands/serve.js";
 import { statusCommand } from "./commands/status.js";
 import { guardrailsCommand } from "./commands/guardrails.js";
 
-const VERSION = "1.0.2";
+const VERSION = "1.1.0";
 
 const HELP = `Product-Helper ${VERSION}
 
-Living PRD, kanban PM board, and guardrails for coding agents.
+One command installs skills. Agents keep the product doc, TaskTrack, and rules current.
 
 Usage:
   product-helper <command> [options]
