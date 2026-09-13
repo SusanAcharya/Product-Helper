@@ -34,6 +34,7 @@ export function initWorkspace(cwd, options = {}) {
 
   writeWorkspaceFiles(cwd, model, { forceBoard: true });
   ensureGitignore(cwd);
+  writeTasktrackPointer(cwd);
   installSkills(cwd, options);
   if (options.hooks !== false) installHooks(cwd);
   if (options.agentsMd !== false) appendAgentsSnippet(cwd);
@@ -175,6 +176,17 @@ export function appendClaudeSnippet(cwd) {
   const existing = readTextIf(dest) || "";
   if (existing.includes(AGENTS_SNIPPET_MARK)) return;
   writeText(dest, existing ? `${existing.trimEnd()}\n\n${snippet}` : snippet);
+}
+
+export function writeTasktrackPointer(cwd) {
+  const dest = path.join(cwd, "TASKTRACK.md");
+  const next = readText(path.join(TEMPLATES, "workspace", "TASKTRACK.md"));
+  const existing = readTextIf(dest) || "";
+  if (existing && !existing.includes("npx product-helper open") && !existing.includes("TaskTrack")) {
+    return false;
+  }
+  writeText(dest, next);
+  return true;
 }
 
 export function installChatgptDoc(cwd) {

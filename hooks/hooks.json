@@ -9,7 +9,7 @@
     "stop": [
       {
         "type": "prompt",
-        "prompt": "If this turn finished a feature (not a small bug fix), follow the product-helper skill: re-read .product-helper/GUARDRAILS.md, then update product.json, PRODUCT.md, TaskTrack, and TIMELINE.md so they match reality. Feature cards only. The human is the PM — do not invent completed work. If Product-Helper is not initialized, propose `npx product-helper init`. If docs already match, do nothing.",
+        "prompt": "If this turn finished a feature, you manage TaskTrack: re-read .product-helper/GUARDRAILS.md, update product.json, PRODUCT.md, TaskTrack, and TIMELINE.md. Feature cards only. Do not ask the human to move cards. End with: run `npx product-helper open`. If the workspace is missing, run `npx product-helper init`. If docs already match, still remind them how to open TaskTrack.",
         "loop_limit": 1
       }
     ]

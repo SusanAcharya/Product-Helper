@@ -1,58 +1,38 @@
 # Product-Helper
 
-One command installs the skills. Cursor, Claude, Codex, and ChatGPT pick them up and keep a living product doc, TaskTrack, and rules in the repo.
+Give it a folder or a GitHub URL. That is the whole setup. After that you only **read** TaskTrack. Your coding agent writes the cards, the product doc, and the rules.
 
 ```bash
-npx product-helper init
+npx product-helper
 ```
 
-That copies the skills, writes a local `.product-helper/` workspace, and adds `.product-helper/` to `.gitignore`. After that, work as usual. The agent updates the plan, TaskTrack, and the timeline. You do not run `sync` after every change. You do not commit `.product-helper/`.
+In a repo, that command sets it up (if needed) and opens TaskTrack in your browser.
+
+From a GitHub repo:
 
 ```bash
-npx product-helper serve          # open TaskTrack at http://127.0.0.1:4173/
+npx product-helper init https://github.com/you/your-repo
 ```
 
-You are the PM. Agents propose **feature** cards. They do not invent completed work. Small bug fixes stay off TaskTrack.
+Come back to the plan anytime:
+
+```bash
+npx product-helper open
+```
+
+Bookmark the page. `TASKTRACK.md` in the repo is the reminder.
+
+You do not move cards. You do not run `sync`. After a feature, Cursor, Claude, Codex, or ChatGPT updates TaskTrack. You mark Done when you accept the work.
 
 ## What you get
 
-- **Skills** for Cursor, Claude Code, and ChatGPT/Codex — loaded automatically
-- **Living product doc** (`PRODUCT.md`)
-- **TaskTrack** — a simple, phone-friendly plan of features
-- **Timeline** — a dated list of changes to TaskTrack, the product doc, and the rules
-- **Guardrails** agents re-read before acting
+- Skills for Cursor, Claude, and ChatGPT/Codex — loaded on their own
+- A living product doc
+- TaskTrack — the plan, opened in the browser
+- A timeline of changes
+- Rules the agent re-reads
 
-`init` is safe to re-run. It will not overwrite Custom guardrails or the `USER-VISION` block.
-
-## What gets committed
-
-| Keep in git | Why |
-| --- | --- |
-| `.cursor/skills/`, `.claude/skills/`, `.agents/skills/` | So every agent finds the skill |
-| `.cursor/rules/` and hooks | So the agent is reminded after work |
-| `AGENTS.md` / `CLAUDE.md` snippets | So Codex and Claude load the skill |
-
-| Leave local (gitignored) | Why |
-| --- | --- |
-| `.product-helper/` | Generated workspace: product doc, TaskTrack, timeline, rules |
-
-## After init
-
-1. Open the repo in your coding agent.
-2. The skill loads on its own (or type `/product-helper`).
-3. After a **feature** lands, the agent updates TaskTrack, the product doc, and the timeline.
-
-## CLI (optional)
-
-`init` is the product. `serve` opens TaskTrack. Everything else is a fallback.
-
-```
-product-helper init [--force] [--no-hooks] [--no-agents-md] [--dir <path>]
-product-helper serve [--port 4173] [--dir <path>]
-product-helper sync [--from-git] [--dry-run] [--dir <path>]
-product-helper status [--dir <path>]
-product-helper guardrails [--validate] [--dir <path>]
-```
+`.product-helper/` is local and gitignored. Skills and `TASKTRACK.md` stay in git.
 
 ## License
 

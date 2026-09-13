@@ -25,7 +25,7 @@ This repository uses Product-Helper.
 
 - Before substantial work, read `.product-helper/GUARDRAILS.md` if present, otherwise `templates/workspace/GUARDRAILS.md`.
 - Follow `skills/product-helper/SKILL.md`.
-- After a feature, update TaskTrack, PRODUCT.md, and TIMELINE.md yourself. Keep examples and templates aligned. Do not ask the human to run `sync`.
-- In this repo, `.product-helper/` is the product’s own workspace and stays in git. In consumer repos it is gitignored.
+- After a feature, you manage TaskTrack, PRODUCT.md, and TIMELINE.md. The human only reads. Tell them: `npx product-helper open`.
+- In this repo, `.product-helper/` stays in git. In consumer repos it is gitignored.
 - The human is the PM. Do not invent completed work.
 <!-- product-helper:end -->

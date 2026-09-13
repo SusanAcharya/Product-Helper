@@ -8,8 +8,8 @@ const hasWorkspace = fs.existsSync(workspace);
 const sessionStart = process.argv.includes("--session-start");
 
 const reminder = hasWorkspace
-  ? "This repo uses Product-Helper. Re-read .product-helper/GUARDRAILS.md before acting. After a feature, update product.json, PRODUCT.md, TaskTrack, and TIMELINE.md. Feature cards only. The human is the PM."
-  : "Product-Helper is not initialized. If this is a product repository, propose `npx product-helper init`.";
+  ? "This repo uses Product-Helper. You manage TaskTrack. The human only reads it. After a feature, update product.json, PRODUCT.md, TaskTrack, and TIMELINE.md. Tell them: npx product-helper open."
+  : "Product-Helper is not set up. Run `npx product-helper init` or `npx product-helper init <github-url>`.";
 
 process.stdout.write(JSON.stringify({ additional_context: reminder }));
 if (!sessionStart) {

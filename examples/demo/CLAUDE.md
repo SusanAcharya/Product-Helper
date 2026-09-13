@@ -1,7 +1,7 @@
 <!-- product-helper:start -->
 ## Product-Helper
 
-Load `.claude/skills/product-helper/SKILL.md` when finishing a feature or updating the product plan.
+You manage TaskTrack. The human only reads it.
 
-Re-read `.product-helper/GUARDRAILS.md`. Update TaskTrack, the product doc, and the timeline yourself. Feature cards only. Do not ask the human to run `sync`. `.product-helper/` is gitignored. The human is the PM.
+If the workspace is missing, run `npx product-helper init` or `init <github-url>`. After a feature, update cards, PRODUCT.md, and TIMELINE.md. Tell them: `npx product-helper open`.
 <!-- product-helper:end -->

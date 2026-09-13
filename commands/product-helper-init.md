@@ -1,10 +1,10 @@
 ---
 name: product-helper-init
-description: Bootstrap the Product-Helper workspace, skills, board, PRD, and guardrails in this repository.
+description: Set up Product-Helper from this folder or a GitHub URL, then open TaskTrack.
 ---
 
 # Init Product-Helper
 
-Run `npx product-helper init` in the repository root (or follow `.cursor/skills/product-helper/SKILL.md` bootstrap if the CLI is unavailable).
+Run `npx product-helper init`. If the human gave a GitHub URL, run `npx product-helper init <url>`. Then `npx product-helper open`.
 
-Preserve Custom guardrails and the USER-VISION block. Then report board, PRODUCT.md, and GUARDRAILS.md paths.
+Do not ask them to move cards after that. You manage TaskTrack.

@@ -1,33 +1,33 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-12T15:10:00.000Z",
+  "generatedAt": "2026-09-13T08:45:00.000Z",
   "generatedBy": "product-helper",
   "product": {
     "name": "Product-Helper",
     "slug": "product-helper",
-    "tagline": "One command installs living PRD, TaskTrack, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.",
+    "tagline": "One command (or a GitHub URL) sets up TaskTrack. You read. Your coding agent writes the plan.",
     "users": [
       "Software teams and coding agents working in a repository",
       "Human product managers who own priorities and accept work"
     ],
-    "problem": "Teams and coding agents lose the plan: the product doc goes stale, the work list lives elsewhere, and each agent forgets the rules. Product-Helper keeps one living product doc, TaskTrack the human owns, and rules every agent must re-read.",
+    "problem": "People forget the plan and cannot find the board. Product-Helper sets itself up from a command or a GitHub URL, opens TaskTrack, and lets the agent write the cards. Humans only read.",
     "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living product doc, TaskTrack the human PM owns, and guardrails every coding agent must honor. One command installs the skills. The generated workspace stays local.",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "milestones": [
     {
       "id": "now",
-      "title": "Agent-first TaskTrack",
+      "title": "Open TaskTrack, not hide it",
       "horizon": "now",
       "status": "active",
-      "summary": "Install once. Agents keep the product doc, TaskTrack, and timeline current. .product-helper stays local."
+      "summary": "Init or a GitHub URL sets everything up and opens TaskTrack. Humans read. Agents write."
     },
     {
       "id": "next",
       "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Human accepts Check cards for 1.1.0."
+      "summary": "Human accepts Check cards for 1.2.0."
     },
     {
       "id": "later",
@@ -78,7 +78,7 @@
     {
       "id": "ph-002",
       "title": "TaskTrack",
-      "description": "A simple, phone-friendly plan of features. Not for small bug fixes.",
+      "description": "The plan opens in the browser. Bookmark it. Run npx product-helper open anytime.",
       "status": "review",
       "labels": [
         "now",
@@ -86,7 +86,7 @@
       ],
       "feature": "tasktrack",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T15:10:00.000Z",
+      "updatedAt": "2026-09-13T08:45:00.000Z",
       "source": "agent"
     },
     {
@@ -134,7 +134,7 @@
     {
       "id": "ph-006",
       "title": "Agent-first usage story",
-      "description": "One npx command copies skills. Agents then update the product doc, TaskTrack, and timeline.",
+      "description": "npx product-helper, or init with a GitHub URL, sets everything up and opens TaskTrack.",
       "status": "review",
       "labels": [
         "now",
@@ -143,7 +143,7 @@
       ],
       "feature": "agent-first-loop",
       "createdAt": "2026-09-12T14:35:00.000Z",
-      "updatedAt": "2026-09-12T15:10:00.000Z",
+      "updatedAt": "2026-09-13T08:45:00.000Z",
       "source": "agent"
     },
     {
@@ -158,6 +158,20 @@
       "feature": "timeline",
       "createdAt": "2026-09-12T15:10:00.000Z",
       "updatedAt": "2026-09-12T15:10:00.000Z",
+      "source": "agent"
+    },
+    {
+      "id": "ph-008",
+      "title": "Visible TaskTrack",
+      "description": "Setup opens the plan. TASKTRACK.md stays in git. The agent writes; people only read.",
+      "status": "review",
+      "labels": [
+        "now",
+        "feature"
+      ],
+      "feature": "visible-tasktrack",
+      "createdAt": "2026-09-13T08:45:00.000Z",
+      "updatedAt": "2026-09-13T08:45:00.000Z",
       "source": "agent"
     }
   ],
@@ -233,6 +247,15 @@
       "from": "kanban board",
       "to": "TaskTrack",
       "summary": "Replaced the kanban name with TaskTrack, added a timeline, and gitignored the generated workspace in consumer repos."
+    },
+    {
+      "id": "chg-open",
+      "at": "2026-09-13T08:45:00.000Z",
+      "kind": "added",
+      "section": "tasktrack",
+      "from": "",
+      "to": "npx product-helper open",
+      "summary": "Added one-command setup from a folder or GitHub URL, and a visible way to open TaskTrack."
     }
   ],
   "decisions": [
@@ -307,6 +330,14 @@
       "action": "replaced",
       "title": "Plan is now TaskTrack",
       "detail": "Feature cards only. Phone-friendly. Timeline added. Consumer workspace is gitignored."
+    },
+    {
+      "id": "tl-open",
+      "at": "2026-09-13T08:45:00.000Z",
+      "area": "tasktrack",
+      "action": "added",
+      "title": "TaskTrack opens itself",
+      "detail": "One command or a GitHub URL sets up the skill and opens the plan. Humans read. Agents write the cards."
     }
   ]
 }

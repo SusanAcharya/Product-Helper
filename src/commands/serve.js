@@ -3,6 +3,8 @@ import http from "node:http";
 import path from "node:path";
 import { workspacePaths } from "../lib/paths.js";
 import { exists } from "../lib/fs.js";
+import { openInBrowser } from "../lib/open.js";
+import { printOpenBanner } from "./open.js";
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -42,12 +44,9 @@ export function serveCommand(cwd, flags) {
 
   server.listen(port, "127.0.0.1", () => {
     const url = `http://127.0.0.1:${port}/`;
-    console.log(`TaskTrack`);
-    console.log(`  ${url}`);
-    console.log(`  Product:    ${url}PRODUCT.md`);
-    console.log(`  Timeline:   ${url}TIMELINE.md`);
-    console.log(`  Rules:      ${url}GUARDRAILS.md`);
-    console.log("Press Ctrl+C to stop.");
+    if (flags.open !== false) openInBrowser(url);
+    printOpenBanner(url);
+    console.log("Leave this running. Press Ctrl+C to stop.");
   });
 
   return new Promise((resolve) => {

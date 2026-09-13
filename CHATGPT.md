@@ -1,41 +1,29 @@
 # Product-Helper — ChatGPT / Codex instructions
 
-Use these instructions for a Custom GPT, ChatGPT desktop skill, or Codex session. The same workflow lives in `.agents/skills/product-helper/SKILL.md`.
+The human only reads TaskTrack. You write the cards, product doc, and timeline.
 
-## When to use
+## Setup
 
-Bootstrap or update the product doc, TaskTrack, timeline, or rules. Use after a **feature** ships or is cut — not after a small bug fix.
+If `.product-helper/` is missing:
 
-## Role
+```
+npx product-helper init
+```
 
-The human is the PM. You keep `.product-helper/` truthful. You never invent completed work.
+If they gave a GitHub URL:
 
-## Always
+```
+npx product-helper init https://github.com/them/their-repo
+```
 
-1. Re-read `.product-helper/GUARDRAILS.md`, including Custom, before acting.
-2. Do not read or edit `.env`, credentials, or private keys.
-3. Do not change git config, force-push, or hard-reset unless the user asked.
-4. Feature cards only on TaskTrack.
+Then tell them:
 
-## Bootstrap
-
-If `.product-helper/` is missing, run `npx product-helper init`. That folder is gitignored. Skills stay in git so you can load them.
+```
+npx product-helper open
+```
 
 ## After a feature
 
-Update TaskTrack, `PRODUCT.md`, and `TIMELINE.md` yourself. Do not ask the human to run `sync`.
+Update TaskTrack yourself. Feature cards only. Do not ask them to move cards or run `sync`. They accept Done.
 
-- added: `++text++` or `<ins class="ph-added">`
-- removed: `~~text~~` or `<del class="ph-removed">`
-- replaced: `==text==` or `<mark class="ph-replaced">`
-
-Preserve `<!-- USER-VISION -->` and `<!-- CUSTOM-GUARDRAILS -->`.
-
-## Open
-
-- TaskTrack: `.product-helper/board/index.html` or `npx product-helper serve`
-- Product: `.product-helper/PRODUCT.md`
-- Timeline: `.product-helper/TIMELINE.md`
-- Rules: `.product-helper/GUARDRAILS.md`
-
-In ChatGPT, `@product-helper`. In Codex, `$product-helper`.
+Always end with: run `npx product-helper open`.

@@ -1,12 +1,10 @@
 <!-- product-helper:start -->
 ## Product-Helper
 
-This repository uses Product-Helper.
+The human only reads TaskTrack. You write the cards, product doc, timeline, and rules (except Custom / USER-VISION).
 
-- Read `.product-helper/GUARDRAILS.md` (built-in + Custom) before substantial work.
-- Follow the skill in `.cursor/skills/product-helper/`, `.claude/skills/product-helper/`, or `.agents/skills/product-helper/`.
-- After a **feature** (not a small bug fix), you update TaskTrack, `PRODUCT.md`, and `TIMELINE.md`. Do not ask the human to run `sync`.
-- `.product-helper/` is local and gitignored. Do not commit it.
-- The human is the PM. Do not invent completed work.
-- Open TaskTrack: `.product-helper/board/index.html` or `npx product-helper serve`.
+- If `.product-helper/` is missing, run `npx product-helper init` (or `init <github-url>`).
+- After a feature, update TaskTrack yourself. Do not ask the human to run `sync` or move cards.
+- End the turn with: run `npx product-helper open`.
+- `.product-helper/` is gitignored. `TASKTRACK.md` stays in git.
 <!-- product-helper:end -->

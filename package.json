@@ -1,7 +1,7 @@
 {
   "name": "product-helper",
-  "version": "1.1.0",
-  "description": "One command installs living PRD, TaskTrack, and guardrail skills for Cursor, Claude, Codex, and ChatGPT.",
+  "version": "1.2.0",
+  "description": "One command (or a GitHub URL) sets up TaskTrack. You read. Your coding agent writes the plan.",
   "type": "module",
   "bin": {
     "product-helper": "bin/product-helper.js"
