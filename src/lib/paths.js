@@ -56,6 +56,8 @@ export function workspacePaths(cwd = process.cwd()) {
     boardJs: path.join(board, "board.js"),
     boardJson: path.join(board, "board.json"),
     dataJs: path.join(board, "data.js"),
+    faviconSvg: path.join(board, "favicon.svg"),
+    appleTouchIcon: path.join(board, "apple-touch-icon.svg"),
   };
 }
 

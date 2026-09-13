@@ -9,7 +9,7 @@
     "stop": [
       {
         "type": "prompt",
-        "prompt": "If this turn completed a major feature, refinement, task, or scope change, follow the product-helper skill: re-read .product-helper/GUARDRAILS.md (defaults + Custom), then update product.json, PRODUCT.md (green added / yellow replaced / red removed), and the board so they match reality. The human is the PM — do not invent completed work. If Product-Helper is not initialized and this is a product repo, propose `npx product-helper init`. If docs already reflect the work, do nothing.",
+        "prompt": "If this turn finished a feature, you manage TaskTrack: re-read .product-helper/GUARDRAILS.md, update product.json, PRODUCT.md (including SEO), TaskTrack, and TIMELINE.md. Move the matching feature card Later → Planned → In progress. Do not dump every card in one column. Feature cards only. On a website, remind and add meta description, SEO basics, and favicons for browser and phone. They accept Done. End with: run `npx product-helper open`. If the workspace is missing, run `npx product-helper init`. If docs already match, still remind them how to open TaskTrack.",
         "loop_limit": 1
       }
     ]

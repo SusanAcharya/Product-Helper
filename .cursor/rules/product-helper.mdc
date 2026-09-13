@@ -6,8 +6,10 @@ alwaysApply: true
 This repo uses Product-Helper.
 
 - If `.product-helper/` is missing, run `npx product-helper init`.
-- After a feature, you update TaskTrack, PRODUCT.md, and TIMELINE.md.
+- After a feature, you update TaskTrack, PRODUCT.md, and TIMELINE.md. Feature cards only.
+- Move cards Later → Planned → In progress. Do not dump every card in one column.
+- First look is thorough. Wait for live pages. Fill SEO: meta description, favicons, load times.
 - Do not ask the human to run `sync` or move cards.
 - Always tell them: `npx product-helper open`.
-- In this Product-Helper repo, `.product-helper/` stays in git.
+- They read. You write. They accept Done.
 - Skill: `.cursor/skills/product-helper/SKILL.md`

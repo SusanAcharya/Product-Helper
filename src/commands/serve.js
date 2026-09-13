@@ -4,6 +4,7 @@ import path from "node:path";
 import { workspacePaths } from "../lib/paths.js";
 import { exists } from "../lib/fs.js";
 import { openInBrowser } from "../lib/open.js";
+import { healWorkspace } from "../lib/workspace.js";
 import { printOpenBanner } from "./open.js";
 
 const TYPES = {
@@ -18,10 +19,12 @@ const TYPES = {
 export function serveCommand(cwd, flags) {
   const root = path.resolve(cwd);
   const paths = workspacePaths(root);
-  if (!exists(paths.boardHtml)) {
+  if (!exists(paths.boardHtml) && !exists(paths.productJson)) {
     console.error("No TaskTrack found. Run `npx product-helper init` first.");
     return 1;
   }
+
+  if (flags.heal !== false) healWorkspace(root);
 
   const port = Number(flags.port) || 4173;
   const server = http.createServer((req, res) => {
@@ -62,6 +65,8 @@ function resolvePublic(paths, pathname) {
     "board.js": paths.boardJs,
     "board.json": paths.boardJson,
     "data.js": paths.dataJs,
+    "favicon.svg": paths.faviconSvg,
+    "apple-touch-icon.svg": paths.appleTouchIcon,
     "PRODUCT.md": paths.productMd,
     "GUARDRAILS.md": paths.guardrailsMd,
     "DECISIONS.md": paths.decisionsMd,

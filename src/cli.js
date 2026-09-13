@@ -8,7 +8,7 @@ import { serveCommand } from "./commands/serve.js";
 import { statusCommand } from "./commands/status.js";
 import { guardrailsCommand } from "./commands/guardrails.js";
 
-const VERSION = "1.2.0";
+const VERSION = "1.3.0";
 
 const HELP = `Product-Helper ${VERSION}
 

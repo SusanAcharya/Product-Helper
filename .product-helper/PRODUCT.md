@@ -2,7 +2,7 @@
 
 > One command (or a GitHub URL) sets up TaskTrack. You read. Your coding agent writes the plan.
 
-**Status:** living PRD · **Generated:** 2026-09-13T08:45:00.000Z · **Product version:** 1.2.0
+**Status:** living PRD · **Generated:** 2026-09-13T12:49:58.445Z · **Product version:** 1.3.0
 
 <!-- USER-VISION:START -->
 ## Vision
@@ -21,33 +21,48 @@ People forget the plan and cannot find the board. Product-Helper sets itself up 
 
 ## Core features
 
-- **Living PRD** — PRODUCT.md with users, problem, features, and change marks. Agents update it after major work. _(TaskTrack: review)_
-- **TaskTrack** — The plan opens in the browser. Bookmark it. Run npx product-helper open anytime. _(TaskTrack: review)_
-- **Guardrails** — Built-in safety rules plus a Custom section agents re-read before acting. _(TaskTrack: review)_
-- **Multi-agent skills** — Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills. _(TaskTrack: review)_
-- **CLI** — init installs the workspace and gitignores it. serve opens TaskTrack. _(TaskTrack: review)_
-- **Agent-first usage story** — npx product-helper, or init with a GitHub URL, sets everything up and opens TaskTrack. _(TaskTrack: review)_
-- **Timeline** — A dated list of changes to TaskTrack, the product doc, and the rules. _(TaskTrack: review)_
-- **Visible TaskTrack** — Setup opens the plan. TASKTRACK.md stays in git. The agent writes; people only read. _(TaskTrack: review)_
+- **A living product doc** — A short note of who it is for, the problem, and what you are building. The agent keeps it current. _(TaskTrack: Later)_
+- **The plan you can read** — Cards sit in Later, Planned, and In progress. You accept Done when a feature is good enough. _(TaskTrack: In progress)_
+- **Rules the agent must follow** — Safety rules plus a Custom section the agent re-reads before it acts. _(TaskTrack: Later)_
+- **Works with your coding agent** — The same plan and rules in Cursor, Claude, and ChatGPT. _(TaskTrack: Later)_
+- **One command to start** — Run npx product-helper in a folder, or pass a GitHub URL. It sets up the plan and opens it. _(TaskTrack: Planned)_
+- **You read. The agent writes.** — After setup you only read TaskTrack. Your coding agent writes the cards and the product doc. _(TaskTrack: Planned)_
+- **What changed, and when** — A dated list of changes to the plan, the product doc, and the rules. _(TaskTrack: Later)_
+- **A page you can bookmark** — Setup opens the plan in your browser. Come back anytime with npx product-helper open. _(TaskTrack: In progress)_
+- **SEO on the first look** — When there is a website, wait for the real page, then write title, meta description, favicons, and load time. _(TaskTrack: In progress)_
 
 ## Deliverables
 
-- Open work: **8** cards
+- Open work: **9** cards
 - Completed (confirmed): **0** cards
 - Human PM owns acceptance. Agents must not invent completed work.
 
 ## Current status
 
-- **Ideas:** 0
-- **Next:** 0
-- **Doing:** 0
-- **Check:** 8
+- **Later:** 4
+- **Planned:** 2
+- **In progress:** 3
 - **Done:** 0
+
+## SEO
+
+- **Live URL:** local TaskTrack (.product-helper/board/index.html)
+- **Last checked:** 2026-09-13T12:49:58.445Z
+- **Title:** Product-Helper · TaskTrack
+- **Meta description:** One command (or a GitHub URL) sets up TaskTrack. You read. Your coding agent writes the plan.
+- **Browser favicon:** ok — favicon.svg
+- **Phone home-screen icon:** svg shipped; add apple-touch-icon.png (180×180) if this is ever a public site
+- **Load / wait:** useful content at ~0s, waited ~0s
+- **Notes:** TaskTrack is a local page. Title and meta description now come from the product name and tagline.
+
+Findings:
+- Added a meta description and browser favicon to TaskTrack.
+- Phone icon is SVG. Public sites should also ship a 180×180 PNG.
 
 ## Now / next / later
 
 - **now — Open TaskTrack, not hide it:** Init or a GitHub URL sets everything up and opens TaskTrack. Humans read. Agents write.
-- **next — Confirm the shipped slice:** Human accepts Check cards for 1.2.0.
+- **next — Confirm the shipped slice:** Human accepts Done when a shipped feature is good enough.
 - **later — Grow later:** Cursor marketplace and other optional distribution.
 
 ## Change tracking
@@ -58,6 +73,9 @@ Marks show on GitHub and in TaskTrack:
 - <del class="ph-removed">removed</del>
 - <mark class="ph-replaced">replaced</mark>
 
+- 2026-09-13 · <ins class="ph-added">Added an SEO section, favicons on TaskTrack, and a first-look rule: wait for the real page, not a white screen.</ins>
+- 2026-09-13 · <mark class="ph-replaced">Replaced jargon on TaskTrack cards and made the empty Done column explain itself.</mark>
+- 2026-09-13 · <mark class="ph-replaced">Replaced the Check pile-up with four columns that cards actually move through.</mark>
 - 2026-09-13 · <ins class="ph-added">Added one-command setup from a folder or GitHub URL, and a visible way to open TaskTrack.</ins>
 - 2026-09-12 · <mark class="ph-replaced">Replaced the kanban name with TaskTrack, added a timeline, and gitignored the generated workspace in consumer repos.</mark>
 - 2026-09-12 · <ins class="ph-added">Published product-helper@1.0.2 so npm leads with npx product-helper init.</ins>

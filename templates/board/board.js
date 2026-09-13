@@ -9,19 +9,67 @@ const views = {
   guardrails: $("view-guardrails"),
 };
 
+const COLUMNS = [
+  { id: "later", title: "Later" },
+  { id: "planned", title: "Planned" },
+  { id: "in-progress", title: "In progress" },
+  { id: "done", title: "Done" },
+];
+
+const STATUS_ALIAS = {
+  backlog: "later",
+  ideas: "later",
+  later: "later",
+  ready: "planned",
+  next: "planned",
+  planned: "planned",
+  "in-progress": "in-progress",
+  doing: "in-progress",
+  review: "planned",
+  check: "planned",
+  done: "done",
+};
+
 const STATUS_LABEL = {
-  backlog: "Ideas",
-  ready: "Next",
-  "in-progress": "Doing",
-  review: "Check",
+  later: "Later",
+  planned: "Planned",
+  "in-progress": "In progress",
   done: "Done",
 };
+
+function cardStatus(status) {
+  return STATUS_ALIAS[status] || "later";
+}
+
+function visibleCards() {
+  const cards = (data.cards || []).map((card) => ({
+    ...card,
+    status: cardStatus(card.status),
+  }));
+  unstackIfDumped(cards);
+  return cards;
+}
+
+function unstackIfDumped(cards) {
+  const active = cards.filter((card) => card.status !== "done");
+  if (active.length < 3) return;
+  const counts = {};
+  for (const card of active) counts[card.status] = (counts[card.status] || 0) + 1;
+  const stacked = Object.entries(counts).find(([, count]) => count === active.length);
+  if (!stacked || stacked[0] === "in-progress") return;
+  active.forEach((card, index) => {
+    card.status = index < 2 ? "planned" : "later";
+  });
+}
 
 function init() {
   applyTheme(localStorage.getItem("ph-theme") || preferredTheme());
   $("product-name").textContent = data.product?.name || "Untitled product";
   $("product-tagline").textContent = data.product?.tagline || "";
   document.title = `${data.product?.name || "Product"} · TaskTrack`;
+  setMetaDescription(
+    data.product?.tagline || "TaskTrack is the product plan. You read. Your coding agent writes the cards.",
+  );
   $("generated-at").textContent = data.generatedAt
     ? `Updated ${new Date(data.generatedAt).toLocaleString()}`
     : "";
@@ -44,6 +92,16 @@ function init() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeDrawer();
   });
+}
+
+function setMetaDescription(text) {
+  let meta = document.querySelector('meta[name="description"]');
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", "description");
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", String(text).replace(/\s+/g, " ").trim().slice(0, 160));
 }
 
 function preferredTheme() {
@@ -73,38 +131,36 @@ function showView(name, tab) {
 
 function renderBoard(query) {
   const q = query.trim().toLowerCase();
-  const columns = data.columns?.length
-    ? data.columns
-    : [
-        { id: "backlog", title: "Ideas" },
-        { id: "ready", title: "Next" },
-        { id: "in-progress", title: "Doing" },
-        { id: "review", title: "Check" },
-        { id: "done", title: "Done" },
-      ];
+  const cards = visibleCards();
   views.board.className = "view is-active board";
-  views.board.innerHTML = columns
-    .map((column) => {
-      const cards = (data.cards || []).filter(
-        (card) =>
-          card.status === column.id &&
-          (!q || `${card.title} ${card.description}`.toLowerCase().includes(q)),
-      );
-      const body = cards.length
-        ? cards.map((card) => cardButton(card)).join("")
-        : `<p class="empty">No features here yet.</p>`;
-      return `<section class="column"><h2>${escapeHtml(column.title)} <span class="count">${cards.length}</span></h2>${body}</section>`;
-    })
-    .join("");
+  views.board.innerHTML = COLUMNS.map((column) => {
+    const shown = cards.filter(
+      (card) =>
+        card.status === column.id &&
+        (!q || `${card.title} ${card.description}`.toLowerCase().includes(q)),
+    );
+    const body = shown.length
+      ? shown.map((card) => cardButton(card)).join("")
+      : `<p class="empty">${emptyCopy(column.id)}</p>`;
+    return `<section class="column" data-column="${escapeHtml(column.id)}"><h2>${escapeHtml(column.title)} <span class="count">${shown.length}</span></h2>${body}</section>`;
+  }).join("");
   views.board.querySelectorAll("[data-card]").forEach((button) => {
     button.addEventListener("click", () => openCard(button.dataset.card));
   });
 }
 
+function emptyCopy(columnId) {
+  if (columnId === "later") return "Ideas you are not starting yet.";
+  if (columnId === "planned") return "Nothing lined up to start next.";
+  if (columnId === "in-progress") return "Nothing being built right now.";
+  if (columnId === "done") return "You accept a feature and it lands here. Nothing accepted yet.";
+  return "Nothing here yet.";
+}
+
 function cardButton(card) {
   return `<button type="button" class="card" data-card="${escapeHtml(card.id)}">
     <h3>${escapeHtml(card.title)}</h3>
-    <p>${escapeHtml(truncate(card.description || "", 110))}</p>
+    <p>${escapeHtml(truncate(card.description || "", 180))}</p>
   </button>`;
 }
 
@@ -163,7 +219,7 @@ function formatWhen(value) {
 }
 
 function openCard(id) {
-  const card = (data.cards || []).find((item) => item.id === id);
+  const card = visibleCards().find((item) => item.id === id);
   if (!card) return;
   $("drawer-title").textContent = card.title;
   $("drawer-status").textContent = STATUS_LABEL[card.status] || card.status;

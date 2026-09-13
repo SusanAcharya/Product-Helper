@@ -21,11 +21,11 @@ A calm workspace for writers who want research, drafts, and publishing in one pl
 
 ## Core features
 
-- **Research inbox** — Documented in the project README as “Research inbox”. _(board: in-progress)_
-- **Focus editor** — Documented in the project README as “Focus editor”. _(board: ready)_
-- **Publish checklist** — Documented in the project README as “Publish checklist”. _(board: backlog)_
-- **Review lane** — Documented in the project README as “Review lane”. _(board: review)_
-- **Project home screen** — Accepted by the human PM: a quiet home that lists drafts without a dashboard wall of metrics. _(board: done)_
+- **Collect research in one place** — Keep quotes and sources next to the draft instead of losing them in other tools. _(TaskTrack: In progress)_
+- **A quiet place to write** — A simple editor for the draft, without a wall of dashboard numbers. _(TaskTrack: Planned)_
+- **A checklist before you publish** — Shared steps so nothing goes out until the team agrees. _(TaskTrack: Later)_
+- **One place for editor notes** — Editors leave decisions, not a pile of comments. _(TaskTrack: Planned)_
+- **A calm home screen** — A quiet home that lists drafts. You accepted this. _(TaskTrack: Done)_
 
 ## Deliverables
 
@@ -35,21 +35,20 @@ A calm workspace for writers who want research, drafts, and publishing in one pl
 
 ## Current status
 
-- **Backlog:** 1
-- **Ready:** 1
-- **In Progress:** 1
-- **Review:** 1
+- **Later:** 1
+- **Planned:** 2
+- **In progress:** 1
 - **Done:** 1
 
 ## Now / next / later
 
 - **now — Make the product understandable:** Document Lumen Desk, seed the board, and confirm the first shippable slice.
-- **next — Close the highest-value gaps:** Turn inferred features into confirmed deliverables and move Ready work through Review.
+- **next — Close the highest-value gaps:** Turn inferred features into confirmed deliverables and move Planned work to In progress.
 - **later — Harden and scale the system:** Polish distribution, automation, and long-horizon product bets.
 
 ## Change tracking
 
-Marks render on GitHub and in the Product-Helper board:
+Marks show on GitHub and in TaskTrack:
 
 - <ins class="ph-added">added</ins>
 - <del class="ph-removed">removed</del>

@@ -17,7 +17,7 @@ Or open `.product-helper/board/index.html`.
 ## What you do
 
 - Read the product doc, rules, and timeline
-- Check TaskTrack
+- Read TaskTrack (Later, Planned, In progress, Done)
 - Mark a feature Done when you accept it
 
 You do not move cards, write the product doc, or keep the timeline. After a feature, Cursor, Claude, Codex, or ChatGPT does that.

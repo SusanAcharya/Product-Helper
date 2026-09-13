@@ -16,7 +16,7 @@ export function syncCommand(cwd, flags) {
   console.log(`  Cards:      ${result.model.cards.length}`);
   if (flags.fromGit) {
     const inferred = result.model.gitInferences || [];
-    console.log(`  Git hints:  ${inferred.length} (review only — not marked Done)`);
+    console.log(`  Git hints:  ${inferred.length} (planned only — not marked Done)`);
   }
   console.log(`  PRD:        ${result.paths.productMd}`);
   console.log(`  Board:      ${result.paths.boardHtml}`);

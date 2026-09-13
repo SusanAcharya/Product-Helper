@@ -40,6 +40,10 @@ ${renderDeliverables(model)}
 
 ${statusSummary(model)}
 
+## SEO
+
+${renderSeo(model)}
+
 ## Now / next / later
 
 ${(model.milestones || [])
@@ -84,9 +88,51 @@ function renderFeatures(model) {
           : card.source === "sync" || card.source === "bootstrap"
             ? `${card.title} ${card.source === "sync" ? markAdded("added") : ""}`
             : card.title;
-      return `- **${String(label).trim()}** — ${card.description} _(TaskTrack: ${card.status})_`;
+      return `- **${String(label).trim()}** — ${card.description} _(TaskTrack: ${statusLabel(card.status)})_`;
     })
     .join("\n");
+}
+
+function renderSeo(model) {
+  const seo = model.seo || {};
+  const findings = Array.isArray(seo.findings) ? seo.findings : [];
+  const lines = [
+    `- **Live URL:** ${seo.url || "_Not checked yet._"}`,
+    `- **Last checked:** ${seo.lastCheckedAt || "_—_"}`,
+    `- **Title:** ${seo.title || "_missing_"}`,
+    `- **Meta description:** ${seo.metaDescription || "_missing — add one (~150–160 characters). People forget this._"}`,
+    `- **Browser favicon:** ${seo.favicon || "_missing — add favicon.svg or favicon.ico_"}`,
+    `- **Phone home-screen icon:** ${seo.appleTouchIcon || "_missing — add apple-touch-icon.png (180×180)_"}`,
+    `- **Load / wait:** ${formatLoad(seo)}`,
+  ];
+  if (seo.notes) lines.push(`- **Notes:** ${seo.notes}`);
+  if (findings.length) {
+    lines.push("", "Findings:", ...findings.map((item) => `- ${item}`));
+  } else if (!seo.url) {
+    lines.push(
+      "",
+      "_If this product has a website or a live URL, open it, wait until real content is visible (not a white page), and fill this section. Record how long you waited._",
+    );
+  }
+  return lines.join("\n");
+}
+
+function formatLoad(seo) {
+  if (seo.loadMs == null && seo.waitMs == null) {
+    return "_Not timed. If you opened a live page, write seconds to useful content and how long you waited._";
+  }
+  const parts = [];
+  if (seo.loadMs != null) parts.push(`useful content at ~${Math.round(seo.loadMs / 1000)}s`);
+  if (seo.waitMs != null) parts.push(`waited ~${Math.round(seo.waitMs / 1000)}s`);
+  return parts.join(", ");
+}
+
+function statusLabel(status) {
+  if (status === "later") return "Later";
+  if (status === "planned") return "Planned";
+  if (status === "in-progress") return "In progress";
+  if (status === "done") return "Done";
+  return status;
 }
 
 function renderDeliverables(model) {

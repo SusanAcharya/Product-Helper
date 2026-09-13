@@ -4,15 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TaskTrack</title>
+    <meta
+      name="description"
+      content="TaskTrack is the product plan. You read. Your coding agent writes the cards."
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.svg" />
     <link rel="stylesheet" href="./board.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to TaskTrack</a>
     <p class="notice">
-      <strong>TaskTrack</strong>
-      — this is the plan. Bookmark this page.
-      You read. Your coding agent writes the cards.
-      Open again with <code>npx product-helper open</code>.
+      <strong>TaskTrack</strong> — this is the plan. Bookmark this page. You read. Your coding agent writes the cards and moves them as work happens. Open again with <code>npx product-helper open</code>.
     </p>
     <header class="topbar">
       <div class="brand">
@@ -39,6 +42,7 @@
       <button type="button" class="tab" data-view="product">Product</button>
       <button type="button" class="tab" data-view="guardrails">Rules</button>
     </nav>
+    <p class="flow">Later → Planned → In progress. You accept Done when a feature is good enough.</p>
 
     <main id="main">
       <section id="view-board" class="view is-active" aria-label="TaskTrack"></section>

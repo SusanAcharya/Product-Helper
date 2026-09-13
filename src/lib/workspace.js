@@ -12,7 +12,7 @@ import {
   ensureDir,
 } from "./fs.js";
 import { analyzeRepo } from "./analyze.js";
-import { boardView, emptyProduct, mergeModels } from "./model.js";
+import { boardView, emptyProduct, mergeModels, normalizeTaskTrack } from "./model.js";
 import {
   preserveCustomGuardrails,
   preserveUserVision,
@@ -76,6 +76,7 @@ export function writeWorkspaceFiles(cwd, model, { forceBoard = false } = {}) {
     model.product.vision = userVision.trim();
   }
 
+  normalizeTaskTrack(model);
   writeJson(paths.productJson, model);
   writeJson(paths.boardJson, boardView(model));
   writeText(paths.productMd, renderProductMarkdown(model, { userVision }));
@@ -114,6 +115,8 @@ function copyBoardAssets(paths, forceBoard) {
     ["index.html", paths.boardHtml],
     ["board.css", paths.boardCss],
     ["board.js", paths.boardJs],
+    ["favicon.svg", paths.faviconSvg],
+    ["apple-touch-icon.svg", paths.appleTouchIcon],
   ]) {
     if (forceBoard || !exists(dest)) {
       copyFile(path.join(TEMPLATES, "board", srcName), dest);
@@ -193,6 +196,17 @@ export function installChatgptDoc(cwd) {
   const dest = path.join(cwd, "CHATGPT.md");
   if (exists(dest)) return;
   copyFile(path.join(PACKAGE_ROOT, "CHATGPT.md"), dest);
+}
+
+export function healWorkspace(cwd) {
+  const paths = workspacePaths(cwd);
+  const existing = readJsonIf(paths.productJson);
+  if (existing) {
+    writeWorkspaceFiles(cwd, existing, { forceBoard: true });
+    return { paths, model: existing };
+  }
+  if (exists(paths.boardDir)) copyBoardAssets(paths, true);
+  return { paths, model: null };
 }
 
 export function workspaceStatus(cwd) {

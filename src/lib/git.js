@@ -57,7 +57,7 @@ export function applyGitInferences(model, inferences) {
       id,
       title: item.title,
       description: `Inferred from commit ${item.hash}: ${item.subject}. Confirm before treating as complete.`,
-      status: "review",
+      status: "planned",
       labels: ["feature", "git-inferred", item.kind],
       feature: item.hash,
       createdAt: generatedAt,

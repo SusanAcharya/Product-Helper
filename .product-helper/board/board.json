@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-13T08:45:00.000Z",
+  "generatedAt": "2026-09-13T12:49:58.445Z",
   "product": {
     "name": "Product-Helper",
     "slug": "product-helper",
@@ -11,24 +11,20 @@
     ],
     "problem": "People forget the plan and cannot find the board. Product-Helper sets itself up from a command or a GitHub URL, opens TaskTrack, and lets the agent write the cards. Humans only read.",
     "vision": "## Vision\n\nProduct-Helper makes the plan obvious: a living product doc, TaskTrack the human PM owns, and guardrails every coding agent must honor. One command installs the skills. The generated workspace stays local.",
-    "version": "1.2.0"
+    "version": "1.3.0"
   },
   "columns": [
     {
-      "id": "backlog",
-      "title": "Ideas"
+      "id": "later",
+      "title": "Later"
     },
     {
-      "id": "ready",
-      "title": "Next"
+      "id": "planned",
+      "title": "Planned"
     },
     {
       "id": "in-progress",
-      "title": "Doing"
-    },
-    {
-      "id": "review",
-      "title": "Check"
+      "title": "In progress"
     },
     {
       "id": "done",
@@ -38,9 +34,9 @@
   "cards": [
     {
       "id": "ph-001",
-      "title": "Living PRD",
-      "description": "PRODUCT.md with users, problem, features, and change marks. Agents update it after major work.",
-      "status": "review",
+      "title": "A living product doc",
+      "description": "A short note of who it is for, the problem, and what you are building. The agent keeps it current.",
+      "status": "later",
       "labels": [
         "now",
         "docs",
@@ -48,70 +44,70 @@
       ],
       "feature": "living-prd",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-002",
-      "title": "TaskTrack",
-      "description": "The plan opens in the browser. Bookmark it. Run npx product-helper open anytime.",
-      "status": "review",
+      "title": "The plan you can read",
+      "description": "Cards sit in Later, Planned, and In progress. You accept Done when a feature is good enough.",
+      "status": "in-progress",
       "labels": [
         "now",
         "feature"
       ],
       "feature": "tasktrack",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-13T08:45:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-003",
-      "title": "Guardrails",
-      "description": "Built-in safety rules plus a Custom section agents re-read before acting.",
-      "status": "review",
+      "title": "Rules the agent must follow",
+      "description": "Safety rules plus a Custom section the agent re-reads before it acts.",
+      "status": "later",
       "labels": [
         "now",
         "feature"
       ],
       "feature": "guardrails",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-004",
-      "title": "Multi-agent skills",
-      "description": "Same workflow as Cursor, Claude Code, and ChatGPT/Codex skills.",
-      "status": "review",
+      "title": "Works with your coding agent",
+      "description": "The same plan and rules in Cursor, Claude, and ChatGPT.",
+      "status": "later",
       "labels": [
         "distribution",
         "feature"
       ],
       "feature": "multi-agent-skills",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T14:40:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-005",
-      "title": "CLI",
-      "description": "init installs the workspace and gitignores it. serve opens TaskTrack.",
-      "status": "review",
+      "title": "One command to start",
+      "description": "Run npx product-helper in a folder, or pass a GitHub URL. It sets up the plan and opens it.",
+      "status": "planned",
       "labels": [
         "cli",
         "feature"
       ],
       "feature": "cli",
       "createdAt": "2026-09-12T13:51:47.786Z",
-      "updatedAt": "2026-09-12T14:35:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-006",
-      "title": "Agent-first usage story",
-      "description": "npx product-helper, or init with a GitHub URL, sets everything up and opens TaskTrack.",
-      "status": "review",
+      "title": "You read. The agent writes.",
+      "description": "After setup you only read TaskTrack. Your coding agent writes the cards and the product doc.",
+      "status": "planned",
       "labels": [
         "now",
         "docs",
@@ -119,35 +115,48 @@
       ],
       "feature": "agent-first-loop",
       "createdAt": "2026-09-12T14:35:00.000Z",
-      "updatedAt": "2026-09-13T08:45:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-007",
-      "title": "Timeline",
-      "description": "A dated list of changes to TaskTrack, the product doc, and the rules.",
-      "status": "review",
+      "title": "What changed, and when",
+      "description": "A dated list of changes to the plan, the product doc, and the rules.",
+      "status": "later",
       "labels": [
         "now",
         "feature"
       ],
       "feature": "timeline",
       "createdAt": "2026-09-12T15:10:00.000Z",
-      "updatedAt": "2026-09-12T15:10:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
       "source": "agent"
     },
     {
       "id": "ph-008",
-      "title": "Visible TaskTrack",
-      "description": "Setup opens the plan. TASKTRACK.md stays in git. The agent writes; people only read.",
-      "status": "review",
+      "title": "A page you can bookmark",
+      "description": "Setup opens the plan in your browser. Come back anytime with npx product-helper open.",
+      "status": "in-progress",
       "labels": [
         "now",
         "feature"
       ],
       "feature": "visible-tasktrack",
       "createdAt": "2026-09-13T08:45:00.000Z",
-      "updatedAt": "2026-09-13T08:45:00.000Z",
+      "updatedAt": "2026-09-13T10:18:21.275Z",
+      "source": "agent"
+    },
+    {
+      "id": "ph-009",
+      "title": "SEO on the first look",
+      "description": "When there is a website, wait for the real page, then write title, meta description, favicons, and load time.",
+      "status": "in-progress",
+      "labels": [
+        "feature"
+      ],
+      "feature": "seo-first-look",
+      "createdAt": "2026-09-13T12:49:58.445Z",
+      "updatedAt": "2026-09-13T12:49:58.445Z",
       "source": "agent"
     }
   ],
@@ -164,7 +173,7 @@
       "title": "Confirm the shipped slice",
       "horizon": "next",
       "status": "planned",
-      "summary": "Human accepts Check cards for 1.2.0."
+      "summary": "Human accepts Done when a shipped feature is good enough."
     },
     {
       "id": "later",
@@ -255,6 +264,33 @@
       "from": "",
       "to": "npx product-helper open",
       "summary": "Added one-command setup from a folder or GitHub URL, and a visible way to open TaskTrack."
+    },
+    {
+      "id": "chg-columns",
+      "at": "2026-09-13T10:01:03.463Z",
+      "kind": "replaced",
+      "section": "tasktrack",
+      "from": "Ideas / Next / Doing / Check / Done, with every card parked in Check",
+      "to": "Later / Planned / In progress / Done, cards move as work happens",
+      "summary": "Replaced the Check pile-up with four columns that cards actually move through."
+    },
+    {
+      "id": "chg-plain-cards",
+      "at": "2026-09-13T10:18:21.275Z",
+      "kind": "replaced",
+      "section": "tasktrack",
+      "from": "Jargon card titles and a blank Done column",
+      "to": "Plain-language cards and a Done column that says you accept work",
+      "summary": "Replaced jargon on TaskTrack cards and made the empty Done column explain itself."
+    },
+    {
+      "id": "chg-seo",
+      "at": "2026-09-13T12:49:58.445Z",
+      "kind": "added",
+      "section": "seo",
+      "from": "",
+      "to": "SEO section + favicon + thorough session start",
+      "summary": "Added an SEO section, favicons on TaskTrack, and a first-look rule: wait for the real page, not a white screen."
     }
   ],
   "timeline": [
@@ -297,6 +333,30 @@
       "action": "added",
       "title": "TaskTrack opens itself",
       "detail": "One command or a GitHub URL sets up the skill and opens the plan. Humans read. Agents write the cards."
+    },
+    {
+      "id": "tl-columns",
+      "at": "2026-09-13T10:01:03.463Z",
+      "area": "tasktrack",
+      "action": "replaced",
+      "title": "Cards move across four columns",
+      "detail": "Later, Planned, In progress, Done. Dumped Check piles are spread. Agents move cards as work happens."
+    },
+    {
+      "id": "tl-plain-cards",
+      "at": "2026-09-13T10:18:21.275Z",
+      "area": "tasktrack",
+      "action": "replaced",
+      "title": "Cards use everyday words",
+      "detail": "Titles and descriptions are written for a person, not an engineer. Done explains that you accept work there."
+    },
+    {
+      "id": "tl-seo",
+      "at": "2026-09-13T12:49:58.445Z",
+      "area": "prd",
+      "action": "added",
+      "title": "SEO section and a slower first look",
+      "detail": "PRODUCT.md now has SEO. Session start waits for real content and records load times."
     }
   ]
 }

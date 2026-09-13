@@ -130,6 +130,12 @@ body {
   border-color: var(--accent);
 }
 
+.flow {
+  margin: 0.55rem var(--pad) 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
 #main { padding: 0.9rem var(--pad) 3rem; }
 .view[hidden] { display: none !important; }
 
@@ -180,8 +186,25 @@ body {
   color: inherit;
   font: inherit;
 }
+.column[data-column="done"] {
+  background: color-mix(in srgb, var(--added-bg) 35%, var(--bg));
+  border-color: color-mix(in srgb, var(--added) 28%, var(--line));
+}
+.column[data-column="done"] .empty {
+  border-style: solid;
+  text-align: left;
+  line-height: 1.45;
+}
 .card h3 { margin: 0 0 0.3rem; font-size: 1rem; }
-.card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .labels { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
 .chip {
   font-size: 0.72rem;

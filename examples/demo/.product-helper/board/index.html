@@ -3,48 +3,52 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Product-Helper board</title>
+    <title>TaskTrack</title>
     <link rel="stylesheet" href="./board.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to board</a>
+    <a class="skip-link" href="#main">Skip to TaskTrack</a>
+    <p class="notice">
+      <strong>TaskTrack</strong> — this is the plan. Bookmark this page. You read. Your coding agent writes the cards and moves them as work happens. Open again with <code>npx product-helper open</code>.
+    </p>
     <header class="topbar">
       <div class="brand">
         <span class="logo" aria-hidden="true"></span>
         <div>
-          <p class="eyebrow">Product-Helper</p>
+          <p class="eyebrow">TaskTrack</p>
           <h1 id="product-name">Product</h1>
         </div>
       </div>
       <p class="tagline" id="product-tagline"></p>
       <div class="top-actions">
         <label class="search">
-          <span class="visually-hidden">Filter cards</span>
-          <input id="search" type="search" placeholder="Filter cards" />
+          <span class="visually-hidden">Find a feature</span>
+          <input id="search" type="search" placeholder="Find a feature" />
         </label>
         <button type="button" id="theme-toggle" class="ghost" aria-pressed="false">Dark</button>
       </div>
     </header>
 
     <nav class="tabs" aria-label="Views">
-      <button type="button" class="tab is-active" data-view="board">Board</button>
-      <button type="button" class="tab" data-view="roadmap">Now / next / later</button>
+      <button type="button" class="tab is-active" data-view="board">Plan</button>
+      <button type="button" class="tab" data-view="roadmap">Now</button>
+      <button type="button" class="tab" data-view="timeline">Timeline</button>
       <button type="button" class="tab" data-view="product">Product</button>
-      <button type="button" class="tab" data-view="guardrails">Guardrails</button>
-      <button type="button" class="tab" data-view="decisions">Decisions</button>
+      <button type="button" class="tab" data-view="guardrails">Rules</button>
     </nav>
+    <p class="flow">Later → Planned → In progress. You accept Done when a feature is good enough.</p>
 
     <main id="main">
-      <section id="view-board" class="view is-active" aria-label="Kanban board"></section>
-      <section id="view-roadmap" class="view" hidden aria-label="Milestones"></section>
+      <section id="view-board" class="view is-active" aria-label="TaskTrack"></section>
+      <section id="view-roadmap" class="view" hidden aria-label="Now, next, later"></section>
+      <section id="view-timeline" class="view" hidden aria-label="Timeline"></section>
       <section id="view-product" class="view doc" hidden aria-label="Product document"></section>
-      <section id="view-guardrails" class="view doc" hidden aria-label="Guardrails"></section>
-      <section id="view-decisions" class="view doc" hidden aria-label="Decision log"></section>
+      <section id="view-guardrails" class="view doc" hidden aria-label="Rules"></section>
     </main>
 
     <aside id="drawer" class="drawer" hidden>
       <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
-        <button type="button" class="icon-close" id="drawer-close" aria-label="Close card">×</button>
+        <button type="button" class="icon-close" id="drawer-close" aria-label="Close">Close</button>
         <p class="eyebrow" id="drawer-status"></p>
         <h2 id="drawer-title"></h2>
         <p id="drawer-desc"></p>
@@ -54,11 +58,7 @@
 
     <footer class="foot">
       <p id="generated-at"></p>
-      <p>
-        <a href="./PRODUCT.md">PRODUCT.md</a>
-        · <a href="./GUARDRAILS.md">GUARDRAILS.md</a>
-        · <a href="./DECISIONS.md">DECISIONS.md</a>
-      </p>
+      <p>Features only. Small bug fixes stay off TaskTrack.</p>
     </footer>
     <script src="./data.js"></script>
     <script src="./board.js"></script>

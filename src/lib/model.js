@@ -2,17 +2,34 @@ import { nowIso } from "./marks.js";
 import { isFeatureWorthy, slugify } from "./analyze.js";
 
 export const COLUMNS = [
-  { id: "backlog", title: "Ideas" },
-  { id: "ready", title: "Next" },
-  { id: "in-progress", title: "Doing" },
-  { id: "review", title: "Check" },
+  { id: "later", title: "Later" },
+  { id: "planned", title: "Planned" },
+  { id: "in-progress", title: "In progress" },
   { id: "done", title: "Done" },
 ];
+
+export const STATUS_ALIAS = {
+  backlog: "later",
+  ideas: "later",
+  later: "later",
+  ready: "planned",
+  next: "planned",
+  planned: "planned",
+  "in-progress": "in-progress",
+  doing: "in-progress",
+  review: "planned",
+  check: "planned",
+  done: "done",
+};
+
+export function normalizeStatus(status) {
+  return STATUS_ALIAS[status] || "later";
+}
 
 export function emptyProduct(analysis, generatedBy = "product-helper") {
   const generatedAt = nowIso();
   const cards = seedCards(analysis);
-  return {
+  return normalizeTaskTrack({
     version: 1,
     generatedAt,
     generatedBy,
@@ -50,6 +67,7 @@ export function emptyProduct(analysis, generatedBy = "product-helper") {
       },
     ],
     decisions: [],
+    seo: emptySeo(),
     gitInferences: [],
     analysis: {
       packageName: analysis.packageName,
@@ -57,7 +75,7 @@ export function emptyProduct(analysis, generatedBy = "product-helper") {
       docsPresent: analysis.docsPresent,
       structure: analysis.structure.map((item) => item.name),
     },
-  };
+  });
 }
 
 export function seedCards(analysis) {
@@ -68,7 +86,7 @@ export function seedCards(analysis) {
       id: `ph-${String(index + 1).padStart(3, "0")}`,
       title: feature.title,
       description: feature.description,
-      status: index === 0 ? "ready" : "backlog",
+      status: index < 2 ? "planned" : "later",
       labels: ["feature", ...(feature.labels || []).filter((label) => label !== "feature")],
       feature: slugify(feature.title),
       createdAt: generatedAt,
@@ -91,7 +109,7 @@ export function defaultMilestones(analysis) {
       title: "Finish the next features",
       horizon: "next",
       status: "planned",
-      summary: "Move ready features through Doing and Check. The human marks Done.",
+      summary: "Move Planned features to In progress while you build them. The human marks Done.",
     },
     {
       id: "later",
@@ -117,14 +135,14 @@ export function boardView(model) {
 }
 
 export function mergeModels(existing, next) {
-  if (!existing) return next;
+  if (!existing) return normalizeTaskTrack(next);
   const cardsById = new Map(existing.cards.map((card) => [card.id, card]));
   const cardsByTitle = new Map(existing.cards.map((card) => [card.title.toLowerCase(), card]));
 
   for (const card of next.cards) {
     const match = cardsById.get(card.id) || cardsByTitle.get(card.title.toLowerCase());
     if (!match && isFeatureWorthy(card.title, card.description)) {
-      existing.cards.push({ ...card, source: card.source || "sync" });
+      existing.cards.push({ ...card, status: normalizeStatus(card.status), source: card.source || "sync" });
     }
   }
 
@@ -140,8 +158,50 @@ export function mergeModels(existing, next) {
   };
   if (!existing.milestones?.length) existing.milestones = next.milestones;
   if (!existing.timeline) existing.timeline = next.timeline || [];
+  if (!existing.seo) existing.seo = next.seo || emptySeo();
   existing.analysis = next.analysis;
-  return existing;
+  return normalizeTaskTrack(existing);
+}
+
+export function emptySeo() {
+  return {
+    url: "",
+    title: "",
+    metaDescription: "",
+    favicon: "",
+    appleTouchIcon: "",
+    loadMs: null,
+    waitMs: null,
+    notes: "",
+    findings: [],
+    lastCheckedAt: "",
+  };
+}
+
+export function normalizeTaskTrack(model) {
+  model.columns = COLUMNS.map((column) => ({ ...column }));
+  for (const card of model.cards || []) {
+    card.status = normalizeStatus(card.status);
+  }
+  if (!model.seo) model.seo = emptySeo();
+  unstackIfDumped(model);
+  return model;
+}
+
+function unstackIfDumped(model) {
+  const active = (model.cards || []).filter((card) => card.status !== "done");
+  if (active.length < 3) return;
+  const counts = active.reduce((acc, card) => {
+    acc[card.status] = (acc[card.status] || 0) + 1;
+    return acc;
+  }, {});
+  const stacked = Object.entries(counts).find(([, count]) => count === active.length);
+  if (!stacked) return;
+  if (stacked[0] === "in-progress") return;
+
+  active.forEach((card, index) => {
+    card.status = index < 2 ? "planned" : "later";
+  });
 }
 
 export function appendTimeline(model, event) {

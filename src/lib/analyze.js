@@ -92,7 +92,7 @@ function inferFeatures(pkg, headings, _sourceHints, top, identity = {}) {
   };
 
   for (const heading of headings) {
-    add(heading, `A product feature described in the README as “${heading}”.`, ["docs"]);
+    add(heading, `People can ${heading.toLowerCase()} as part of the product.`, ["docs"]);
   }
 
   if (top.some((entry) => entry.name === "cli" || entry.name === "bin")) {
